@@ -9,3 +9,5 @@ Een leerspel voor lezen, schrijven en rekenen op de boerderij, met een graafmach
 Open `index.html`, of zet GitHub Pages aan (Settings > Pages > Branch: main, map: / (root)).
 De app werkt na de eerste keer openen ook zonder internet en kan op het beginscherm van een tablet worden gezet.
 Alle voortgang blijft op het apparaat zelf.
+
+© 2026 Teunnovatie. Alle rechten voorbehouden.

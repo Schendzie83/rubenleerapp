@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#c4e6f6">
+<meta name="author" content="Teunnovatie">
 <meta name="description" content="Leren lezen, schrijven en rekenen met een graafmachine en trekker op de boerderij.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -188,6 +189,9 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
 .learned { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 17px; color: var(--soil); }
 .learned span { background: var(--paper); border: 3px solid var(--ok); border-radius: 999px; padding: 2px 12px; }
 
+.credit { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; color: var(--ink-soft); padding-block: 4px 8px; }
+.credit img { height: 28px; width: auto; }
+
 /* ---------- lagen ---------- */
 .overlay { position: fixed; inset: 0; z-index: 50; background: #2c2219cc; display: grid; place-items: center; padding: 16px; overflow-y: auto; }
 .sheet { background: var(--paper); border: 4px solid var(--soil); border-radius: 24px; padding: 20px; width: min(520px, 100%); box-sizing: border-box; }
@@ -232,6 +236,7 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
     <div class="stickers" id="stickers"></div>
     <div class="next" id="next"></div>
   </div>
+  <footer class="credit"><span>© 2026 Teunnovatie</span></footer>
 </div>
 
 <div id="game" class="screen" hidden>
