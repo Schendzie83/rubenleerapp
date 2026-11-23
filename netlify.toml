@@ -1,0 +1,16 @@
+# Instellingen voor Netlify. Dit bestand gaat voor op wat er in de Netlify-website is ingevuld.
+# De app bestaat uit kant-en-klare bestanden: er hoeft niets gebouwd te worden.
+[build]
+  publish = "."
+  command = "echo 'Geen build nodig: de app bestaat uit kant-en-klare bestanden.'"
+
+# Zorg dat tablets updates snel oppikken.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
