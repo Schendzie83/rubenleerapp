@@ -1,0 +1,55 @@
+BOERDERIJ LEERSPEL - ZELF ONLINE ZETTEN
+=======================================
+
+In deze map staat de hele app. Er is geen server of database nodig:
+het zijn gewone bestanden. Upload de map zoals hij is (index.html moet
+bovenin de map blijven staan).
+
+Wat erin zit
+- index.html            het spel
+- three.min.js          de 3D-weergave van de graafmachine en trekker
+- fonts/                de lettertypes (Andika is gemaakt voor beginnende lezers)
+- sw.js                 zorgt dat de app ook zonder internet werkt
+- manifest.webmanifest  en de icon-bestanden: voor "zet op beginscherm"
+
+
+MANIER 1 - NETLIFY DROP (makkelijkst, gratis)
+1. Ga op een computer naar  app.netlify.com/drop
+2. Maak een gratis account aan.
+3. Sleep de map "boerderij-leerspel-online" naar het vak op de pagina.
+4. Je krijgt meteen een adres, bijvoorbeeld  vrolijke-koe-123.netlify.app
+   Onder "Site configuration" kun je de naam veranderen.
+Een nieuwe versie zet je erop door de map opnieuw te slepen
+(bij je site: "Deploys", dan de map naar het vak slepen).
+
+MANIER 2 - GITHUB PAGES (gratis, iets technischer)
+1. Maak een account op github.com en een nieuwe "repository".
+2. Upload alle bestanden uit deze map ("Add file" > "Upload files").
+3. Settings > Pages > Branch: main, map: / (root) > Save.
+4. Na een minuut staat de app op  jouwnaam.github.io/naam-van-repository
+
+MANIER 3 - EIGEN WEBSITE
+Heb je al webruimte? Zet de map met FTP in een submap, bijvoorbeeld
+jouwsite.nl/boerderij/. De site moet https gebruiken.
+
+
+OP DE TABLET ZETTEN
+- iPad / iPhone: open het adres in Safari, tik op het deel-icoon
+  (vierkantje met pijl) en kies "Zet op beginscherm".
+- Android: open het adres in Chrome, tik op de drie puntjes en kies
+  "App installeren" of "Toevoegen aan startscherm".
+De app opent dan schermvullend als een gewone app. Na de eerste keer
+openen werkt hij ook zonder internet.
+
+
+GOED OM TE WETEN
+- Voortgang (sterren, niveaus, naam) wordt alleen op het apparaat zelf
+  bewaard. Elke tablet of computer heeft zijn eigen voortgang. De
+  voortgang uit de Claude-versie gaat niet mee.
+- Er gaan geen gegevens naar internet: de app laadt niets van andere
+  websites en stuurt niets weg.
+- Iedereen die het adres kent kan de app openen. Er staat niets
+  persoonlijks in, dus dat is geen probleem, maar deel het adres
+  alleen met wie je wilt.
+- Na een update ziet de tablet de nieuwe versie bij de tweede keer
+  openen (de eerste keer wordt hij op de achtergrond opgehaald).
