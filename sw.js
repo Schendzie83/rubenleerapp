@@ -1,6 +1,6 @@
 // Bewaart de app op het apparaat, zodat hij ook zonder internet werkt.
 // Nieuwe versies worden op de achtergrond opgehaald en zijn er bij de volgende keer openen.
-const V = 'boerderij-1795435769';
+const V = 'boerderij-1795436032';
 const SHELL = ['./', 'index.html', 'three.min.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png',
   'fonts/andika-latin-400-normal.woff2', 'fonts/andika-latin-700-normal.woff2', 'fonts/baloo-2-latin-600-normal.woff2', 'fonts/baloo-2-latin-800-normal.woff2'];
 self.addEventListener('install', e => e.waitUntil(caches.open(V).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())));

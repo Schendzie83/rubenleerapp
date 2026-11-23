@@ -1,5 +1,5 @@
-BOERDERIJ LEERSPEL - ZELF ONLINE ZETTEN
-=======================================
+LEERLAND - ZELF ONLINE ZETTEN
+=============================
 
 In deze map staat de hele app. Er is geen server of database nodig:
 het zijn gewone bestanden. Upload de map zoals hij is (index.html moet
