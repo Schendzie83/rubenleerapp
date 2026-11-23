@@ -178,6 +178,16 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
 .joy b { width: 44%; height: 44%; margin: -22% 0 0 -22%; border-radius: 50%; }
 .lev b { width: 100%; height: 34%; margin: -30% 0 0 -50%; border-radius: 14px; }
 
+/* ---------- meegroeien ---------- */
+.wl { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.wl i { font-style: normal; min-width: 22px; text-align: center; border-radius: 8px; padding: 1px 5px; background: #eee3cf; border: 2px solid #b9a98d; font-size: 16px; }
+.wl i.s1 { background: #d6e6ff; border-color: #1d5fd1; }
+.wl i.s2 { background: #cdeec3; border-color: var(--ok); }
+.lvlmsg { text-align: center; font-size: 20px; font-weight: 700; color: var(--ok); margin: 0 0 10px; display: grid; gap: 4px; }
+.lvlmsg:empty { display: none; }
+.learned { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 17px; color: var(--soil); }
+.learned span { background: var(--paper); border: 3px solid var(--ok); border-radius: 999px; padding: 2px 12px; }
+
 /* ---------- lagen ---------- */
 .overlay { position: fixed; inset: 0; z-index: 50; background: #2c2219cc; display: grid; place-items: center; padding: 16px; overflow-y: auto; }
 .sheet { background: var(--paper); border: 4px solid var(--soil); border-radius: 24px; padding: 20px; width: min(520px, 100%); box-sizing: border-box; }
@@ -212,6 +222,7 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
     <button class="parents" id="openSet">voor ouders</button>
   </div>
   <div class="cards" id="cards"></div>
+  <div class="learned" id="learned" hidden></div>
   <div class="rewards" id="rewards">
     <button class="reward" id="rewardE"><svg viewBox="-85 -215 300 225" aria-hidden="true" id="rewardPic"></svg><span><b>graafmachine</b><span class="rewardTxt"></span></span></button>
     <button class="reward" id="rewardT"><svg viewBox="-95 -170 240 180" aria-hidden="true" id="rewardPicT"></svg><span><b>trekker</b><span class="rewardTxt"></span></span></button>
@@ -261,6 +272,7 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
     <h2>klaar!</h2>
     <div class="done-stars" id="doneStars"></div>
     <div class="newsticker" id="newSticker"></div>
+    <div class="lvlmsg" id="lvlMsg"></div>
     <div class="row" style="margin-bottom:12px"><button class="btn" id="goE" hidden>graafmachine</button><button class="btn" id="goT" hidden>trekker</button></div>
     <div class="row">
       <button class="btn" id="again">nog een keer</button>
@@ -290,14 +302,20 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
       <label>Naam van je kind (voor de complimenten)
         <input type="text" id="setName" maxlength="20" autocomplete="off">
       </label>
-      <label>Leesniveau
+      <label class="check"><input type="checkbox" id="setAuto"><span>Niveau automatisch laten meegroeien<br><small>Gaat het 7 van de 8 keer in één keer goed, dan gaat het een stapje hoger. Gaan er 4 van de 6 mis, dan een stapje lager.</small></span></label>
+      <label>Leesniveau nu
         <select id="setWord"></select>
         <small id="statRead"></small>
       </label>
-      <label>Rekenniveau
+      <label>Lezen niet hoger dan
+        <select id="setMax"></select>
+        <small>Zet dit op de kern die op school al behandeld is. Dan komen er geen letters die hij nog niet kent.</small>
+      </label>
+      <label>Rekenniveau nu
         <select id="setMath"></select>
         <small id="statMath"></small>
       </label>
+      <label class="check"><input type="checkbox" id="setHide"><span>Spellen verbergen die hij al beheerst<br><small>"tel" verdwijnt als tellen tot 10 goed gaat, "schrijf" als alle bekende letters zonder spoor goed gaan. Ze komen terug als het weer nodig is of als er nieuwe letters bij komen.</small></span></label>
       <label class="check"><input type="checkbox" id="setRek"><span>Telraam (rekenrek) bij de wei<br><small>Tot en met sommen tot 20.</small></span></label>
       <label>Beloning: graafmachine of trekker besturen
         <select id="setGoal">
@@ -319,14 +337,31 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
         <small>Toetsenbord: Q/A en E/D rupsbanden · F/H draaien · T/G arm · pijltjes giek en bak · spatie start en stop · B toeter. Trekker: pijltjes sturen, gas en rem · R versnelling · M maaier.</small>
       </label>
       <div class="row"><button class="btn plain" id="freePlay">graafmachine proberen</button><button class="btn plain" id="freePlayT">trekker proberen</button></div>
-      <label class="check"><input type="checkbox" id="setPre"><span>Letters voorgedrukt bij het schrijven<br><small>Uit = hij ziet alleen de startstip en schrijft de letter of het woord zelf. Met de knop "hulp" komt het spoor terug.</small></span></label>
-      <label class="check"><input type="checkbox" id="setGhost"><span>Letters voorgedrukt bij het graven<br><small>Uit = lege vakjes: hij spelt het woord op gehoor, met alleen het plaatje en de stem.</small></span></label>
+      <label>Schrijven: letters voorgedrukt
+        <select id="setPre">
+          <option value="auto">automatisch (aanbevolen)</option>
+          <option value="on">altijd voorgedrukt</option>
+          <option value="off">nooit voorgedrukt</option>
+        </select>
+        <small id="statWrite"></small>
+        <span class="wl" id="wrLetters"></span>
+        <small>Automatisch: elke letter eerst met spoor. 2 keer netjes goed, dan zonder spoor. Nog 2 keer goed, dan beheerst. Gaat het zonder spoor 2 keer mis, dan komt het spoor terug. Grijs = met spoor · blauw = zonder spoor · groen = beheerst.</small>
+      </label>
+      <label>Graven: letters voorgedrukt in de vakjes
+        <select id="setGhost">
+          <option value="auto">automatisch (aanbevolen)</option>
+          <option value="on">altijd voorgedrukt</option>
+          <option value="off">nooit (spellen op gehoor)</option>
+        </select>
+        <small>Automatisch: na 4 woorden achter elkaar goed verdwijnt het voorbeeld; na 2 keer mis komt het terug.</small>
+      </label>
       <label class="check"><input type="checkbox" id="setGhostHelp"><span>Na een fout het woord toch licht tonen<br><small>Geldt bij het graven als voordrukken uit staat.</small></span></label>
       <label class="check"><input type="checkbox" id="setSpeech"><span>Voorleesstem</span></label>
       <label class="check"><input type="checkbox" id="setSound"><span>Geluidjes (zacht)</span></label>
       <label class="check"><input type="checkbox" id="setKlank"><span>Letterklank uitspreken bij het graven<br><small>Proef: de computerstem zegt klanken niet altijd zuiver. Luister eerst zelf.</small></span></label>
       <div class="row">
         <button class="btn plain" id="resetBtn">sterren wissen</button>
+        <button class="btn plain" id="resetWr">schrijven opnieuw</button>
         <button class="btn" id="closeSet">klaar</button>
       </div>
     </div>
@@ -360,7 +395,7 @@ const ICON = {
 
 /* ---------- opslag ---------- */
 const KEY = 'boerderij-leerspel-v1';
-const S = { stars: 0, name: '', readLevel: 3, mathLevel: 2, ghost: true, speech: true, sound: true, klank: false, rek: true, pre: true, ghostHelp: true, hist: { read: [], math: [] }, goal: 2, playMin: 3, played: 0, tickets: 0 };
+const S = { stars: 0, name: '', readLevel: 3, mathLevel: 2, ghost: true, speech: true, sound: true, klank: false, rek: true, pre: true, ghostHelp: true, auto: true, hideDone: true, readMax: 0, preMode: 'auto', ghostMode: 'auto', digFree: false, digRun: [], wr: {}, hist: { read: [], math: [] }, goal: 2, playMin: 3, played: 0, tickets: 0 };
 try { Object.assign(S, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
 
@@ -601,7 +636,7 @@ function updateDots() {
   for (let i = 1; i <= G.total; i++) { const d = document.createElement('span'); d.className = 'dot' + (i < G.round ? ' done' : i === G.round ? ' now' : ''); $('#dots').appendChild(d); }
 }
 function startGame(id) {
-  runId++; G.id = id; G.round = 0; G.busy = false; G.deck = null;
+  runId++; G.id = id; G.round = 0; G.busy = false; G.deck = null; G.msgs = {}; G.wasOn = gameOn(id);
   $('#home').hidden = true; $('#done').hidden = true; $('#game').hidden = false;
   audio(); nextRound();
 }
@@ -614,8 +649,8 @@ function nextRound() {
 }
 async function roundWon(text, clean) {
   const my = runId; G.busy = true;
-  const h = S.hist[{ dig: 'read', drive: 'read', load: 'math', field: 'math' }[G.id]];
-  if (h) { h.push(clean ? 1 : 0); while (h.length > 20) h.shift(); }
+  const tk = TRACK[G.id];
+  if (tk) { const h = S.hist[tk]; h.push(clean ? 1 : 0); while (h.length > 20) h.shift(); adapt(tk); }
   S.stars++; save(); updateStars(); sfx.win(); say(text);
   const s = document.createElement('div'); s.className = 'bigstar'; s.innerHTML = STAR; document.body.appendChild(s);
   setTimeout(() => s.remove(), 1400);
@@ -630,8 +665,12 @@ function finish() {
   if (S.goal > 0 && SIM.ok) { S.played++; if (S.played >= S.goal) { S.played = 0; S.tickets++; } save(); }
   const rew = S.goal > 0 && SIM.ok && S.tickets > 0;
   $('#goE').hidden = $('#goT').hidden = !rew;
+  if (G.wasOn && !gameOn(G.id)) G.msgs.retired = { load: 'tellen kun je nu! het telspel is klaar', write: 'alle letters kun je nu schrijven!' }[G.id];
+  const msgs = Object.values(G.msgs);
+  $('#lvlMsg').innerHTML = msgs.map(m => `<span>${m}</span>`).join('');
+  $('#again').hidden = !gameOn(G.id);
   $('#done').hidden = false;
-  say('Klaar! ' + praise() + (rew ? ' Je mag rijden! Kies de graafmachine of de trekker.' : ns.innerHTML ? ' Je krijgt iets nieuws voor je boerderij.' : ''));
+  say('Klaar! ' + praise() + (msgs.length ? ' Je gaat een stapje verder!' : '') + (rew ? ' Je mag rijden! Kies de graafmachine of de trekker.' : ns.innerHTML ? ' Je krijgt iets nieuws voor je boerderij.' : ''));
 }
 function goHome() {
   runId++; engineOff(); hornOff(); try { speechSynthesis.cancel(); } catch (e) {}
@@ -656,12 +695,12 @@ function gameDig() {
   let heaps; do { heaps = shuffle(w.g.concat(d)); } while (heaps.slice(0, w.g.length).join() === w.g.join());
   const n = heaps.length, X0 = 240, X1 = 930, hx = i => n === 1 ? X0 : X0 + (X1 - X0) * i / (n - 1);
   let next = 0, sel = 0, miss = 0, slip = false;
-  const sayWord = () => say('Maak het woord: ' + w.w);
+  const sayWord = () => say('Maak het woord: ' + w.w), ghost = ghostOn();
 
   // opdracht
   const pic = document.createElement('span'); pic.className = 'pic'; pic.textContent = w.e;
   const slots = document.createElement('div'); slots.className = 'slots';
-  const slotEls = w.g.map(g => { const s = document.createElement('span'); s.className = 'slot' + (S.ghost ? ' ghost' : ''); s.textContent = g; slots.appendChild(s); return s; });
+  const slotEls = w.g.map(g => { const s = document.createElement('span'); s.className = 'slot' + (ghost ? ' ghost' : ''); s.textContent = g; slots.appendChild(s); return s; });
   slotEls[0].classList.add('next-up');
   task.append(pic, speakBtn(sayWord), slots);
 
@@ -715,13 +754,13 @@ function gameDig() {
       if (my !== runId) return;
       slotEls[next].classList.remove('next-up', 'ghost'); slotEls[next].classList.add('filled', 'pop');
       next++;
-      if (next >= w.g.length) return roundWon(w.w + '! ' + praise(), !slip);
+      if (next >= w.g.length) { digResult(!slip); return roundWon(w.w + '! ' + praise(), !slip); }
       slotEls[next].classList.add('next-up');
       G.busy = false;
       if (H[sel].empty) { const j = H.findIndex(o => !o.empty); if (j >= 0) moveTo(j); }
     } else {
       sfx.no(); miss++; slip = true;
-      if (!S.ghost && S.ghostHelp) slotEls.forEach(e => { if (!e.classList.contains('filled')) e.classList.add('ghost'); });
+      if (!ghost && S.ghostHelp) slotEls.forEach(e => { if (!e.classList.contains('filled')) e.classList.add('ghost'); });
       await tween(140, p => h.tile.setAttribute('transform', `translate(${h.x + Math.sin(p * 12) * 6},${restY + 72})`));
       await tween(450, p => { const y = lerp(restY, digY, p); pose(ex, y); h.tile.setAttribute('transform', `translate(${h.x},${y + 72})`); });
       tilesG.appendChild(h.tile); h.tile.setAttribute('transform', `translate(${h.x},440)`);
@@ -1040,11 +1079,19 @@ const LW = c => (c === 'm' || c === 'w') ? 84 : 60;
 function gameWrite() {
   const my = runId, L = S.readLevel;
   let txt, picW;
+  const hasOpen = t => [...t].some(c => STROKES[c] && wst(c) < 2);
   if (L <= 6) {
-    if (!G.deck || !G.deck.length) G.deck = shuffle(LEVELS[L - 1].l.split(' ').concat(L > 1 ? LEVELS[L - 2].l.split(' ') : []));
+    if (!G.deck || !G.deck.length) {
+      // letters die nog niet beheerst zijn; de nieuwe letters van deze kern komen dubbel zo vaak
+      const all = letters(L), nw = LEVELS[L - 1].l.split(' ');
+      let p = all.filter(hasOpen); if (!p.length) p = all;
+      G.deck = shuffle(p.concat(p.filter(c => nw.includes(c))));
+    }
     txt = G.deck.pop(); picW = shuffle(allWords(L)).find(x => x.g[0] === txt);
-  } else { picW = deck(x => x.w.length <= 5); txt = picW.w; }
-  const intro = () => say(L > 6 ? `Schrijf het woord: ${txt}. Begin bij de groene stip.` : (picW ? `Schrijf de eerste letter van ${picW.w}. ` : '') + (S.pre ? 'Begin bij de groene stip en volg de pijltjes.' : 'Begin bij de groene stip.'));
+  } else { picW = deck(x => x.w.length <= 5 && hasOpen(x.w)) || deck(x => x.w.length <= 5); txt = picW.w; }
+  const itemChars = [...txt].filter(c => STROKES[c]);
+  const pre0 = S.preMode === 'on' ? true : S.preMode === 'off' ? false : itemChars.some(c => wst(c) === 0);
+  const intro = () => say(L > 6 ? `Schrijf het woord: ${txt}. Begin bij de groene stip.` : (picW ? `Schrijf de eerste letter van ${picW.w}. ` : '') + (pre0 ? 'Begin bij de groene stip en volg de pijltjes.' : 'Nu zonder spoor. Begin bij de groene stip.'));
   const wd = document.createElement('span'); wd.className = 'word'; wd.textContent = txt;
   task.append(wd);
   if (picW) { const pc = document.createElement('span'); pc.className = 'pic'; pc.textContent = picW.e; task.append(pc); }
@@ -1058,7 +1105,7 @@ function gameWrite() {
   el('path', { d: `M-30,40 H${tw + 30} M-30,100 H${tw + 30}`, stroke: '#fffaf0', 'stroke-width': 1.500, 'stroke-dasharray': '6 6', opacity: .7, fill: 'none' }, g);
   const strokes = []; let x0 = 0;
   const line = (d, x, extra) => el('path', Object.assign({ d, transform: `translate(${x},0)`, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, extra), g);
-  chars.forEach(c => { STROKES[c].forEach((d, k) => strokes.push({ d, x0, k, road: line(d, x0, { stroke: '#f0dfb0', 'stroke-width': 18 }) })); x0 += LW(c) + 16; });
+  chars.forEach(c => { STROKES[c].forEach((d, k) => strokes.push({ d, x0, k, c, road: line(d, x0, { stroke: '#f0dfb0', 'stroke-width': 18 }) })); x0 += LW(c) + 16; });
   const arrows = el('g', {}, g);
   strokes.forEach(s => {
     s.ink = line(s.d, s.x0, { stroke: '#6b4a2e', 'stroke-width': 11 });
@@ -1075,7 +1122,9 @@ function gameWrite() {
     el('text', { x: 0, y: .5, 'font-size': 9.500, 'font-weight': 700, 'text-anchor': 'middle', 'dominant-baseline': 'central', fill: '#fff' }, d).textContent = s.k + 1;
     return d;
   });
-  let si = 0, idx = 0, down = false, shown = -1, pre = S.pre;
+  let si = 0, idx = 0, down = false, shown = -1, pre = pre0, helped = false;
+  const errs = {}; itemChars.forEach(c => errs[c] = 0);
+  const local = e => new DOMPoint(e.clientX, e.clientY).matrixTransform(g.getScreenCTM().inverse());
   function show() {
     if (shown !== si) {
       shown = si; arrows.innerHTML = '';
@@ -1096,24 +1145,45 @@ function gameWrite() {
   }
   function move(e) {
     if (!down || G.busy || my !== runId || si >= strokes.length) return;
-    const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(g.getScreenCTM().inverse());
+    const pt = local(e);
     const s = strokes[si], last = s.pts.length - 1;
     let best = -1, bd = 26;
     for (let j = idx; j <= Math.min(last, idx + 14); j++) { const d = Math.hypot(pt.x - s.pts[j][0], pt.y - s.pts[j][1]); if (d < bd) { bd = d; best = j; } }
-    if (best < 0) return;
+    if (best < 0) {
+      // ver van het spoor af geraakt: telt als één fout per uitstapje
+      if (idx > 3 && !s.off && Math.hypot(pt.x - s.pts[idx][0], pt.y - s.pts[idx][1]) > 40) { s.off = true; errs[s.c]++; }
+      return;
+    }
+    s.off = false;
     idx = Math.max(idx, best);
     if (idx >= last - 1) {
-      si++; idx = 0; sfx.pop(); show();
-      if (si >= strokes.length) { down = false; return roundWon(praise(), true); }
+      // een nieuwe haal begint pas als de vinger opnieuw wordt neergezet, net als bij een pen
+      si++; idx = 0; down = false; sfx.pop(); show();
+      if (si >= strokes.length) {
+        if (helped) itemChars.forEach(c => { if (wst(c) >= 1) errs[c]++; });
+        writeResult(errs, !pre);
+        return roundWon(praise(), itemChars.every(c => !errs[c]));
+      }
       return;
     }
     show();
   }
   const sig = { signal: G.ac.signal };
-  scene.addEventListener('pointerdown', e => { e.preventDefault(); down = true; move(e); }, sig);
+  scene.addEventListener('pointerdown', e => {
+    e.preventDefault(); down = true;
+    const s = strokes[si];
+    // op de verkeerde plek begonnen (niet bij de groene stip)
+    if (s && idx === 0 && !s.badStart) { const pt = local(e); if (Math.hypot(pt.x - s.pts[0][0], pt.y - s.pts[0][1]) > 32) { s.badStart = true; errs[s.c]++; } }
+    move(e);
+  }, sig);
   scene.addEventListener('pointermove', move, sig);
-  ['pointerup', 'pointercancel', 'pointerleave'].forEach(t => scene.addEventListener(t, () => down = false, sig));
-  setControls([{ label: 'opnieuw', on: () => { if (!G.busy) { si = 0; idx = 0; show(); } } }].concat(pre ? [] : [{ label: 'hulp', cls: 'go', on: () => { pre = true; shown = -1; show(); } }]));
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(t => scene.addEventListener(t, () => {
+    const s = strokes[si];
+    // halverwege de haal losgelaten
+    if (down && s && idx > 3 && !s.lifted) { s.lifted = true; errs[s.c]++; }
+    down = false;
+  }, sig));
+  setControls([{ label: 'opnieuw', on: () => { if (!G.busy) { si = 0; idx = 0; show(); } } }].concat(pre ? [] : [{ label: 'hulp', cls: 'go', on: () => { pre = true; helped = true; shown = -1; show(); } }]));
   show();
   setTimeout(() => { if (my === runId) intro(); }, 300);
 }
@@ -1140,6 +1210,58 @@ function showRek(rows) {
     out.textContent = sumK();
   }
   r.innerHTML = ''; r.append(rowsEl, out); r.hidden = false; draw();
+}
+/* ---------- meegroeien: niveau, hulp en spellen passen zich aan wat goed gaat ---------- */
+const TRACK = { dig: 'read', drive: 'read', load: 'math', field: 'math' };
+function adapt(track) {
+  if (!S.auto) return;
+  const h = S.hist[track], key = track === 'read' ? 'readLevel' : 'mathLevel';
+  const top = track === 'read' ? Math.min(LEVELS.length, S.readMax || LEVELS.length) : MATH.length;
+  const sum = n => h.slice(-n).reduce((a, b) => a + b, 0);
+  if (h.length >= 8 && sum(8) >= 7 && S[key] < top) {
+    S[key]++; S.hist[track] = []; G.deck = null;
+    const L = S.readLevel;
+    G.msgs[track] = track === 'read' ? (L <= 6 ? 'nieuwe letters: ' + LEVELS[L - 1].l : 'lezen: een stapje hoger') : 'rekenen: ' + MATH[S.mathLevel - 1];
+  } else if (h.length >= 6 && sum(6) <= 2 && S[key] > 1) { S[key]--; S.hist[track] = []; G.deck = null; delete G.msgs[track]; }
+}
+const wst = c => (S.wr[c] && S.wr[c].s) || 0;
+function writePool(L) {
+  const src = L <= 6 ? letters(L).join('') : allWords(L).filter(x => x.w.length <= 5).map(x => x.w).join('');
+  return [...new Set(src)].filter(c => STROKES[c]).sort();
+}
+const writeDone = () => writePool(S.readLevel).every(c => wst(c) >= 2);
+/* per letter: 2x goed met spoor -> zonder spoor; 2x goed zonder spoor -> beheerst. 2x mis zonder spoor -> terug naar het spoor. */
+function writeResult(errs, free) {
+  const toFree = [], toDone = [];
+  for (const c in errs) {
+    const r = S.wr[c] || (S.wr[c] = { s: 0, ok: 0, bad: 0 });
+    if (!errs[c]) {
+      r.bad = 0;
+      if (r.s === 0) { if (++r.ok >= 2) { r.s = 1; r.ok = 0; toFree.push(c); } }
+      else if (r.s === 1 && free) { if (++r.ok >= 2) { r.s = 2; r.ok = 0; toDone.push(c); } }
+    } else {
+      r.ok = 0; r.bad++;
+      if (r.s === 2) { r.s = 1; r.bad = 0; } else if (r.s === 1 && r.bad >= 2) { r.s = 0; r.bad = 0; }
+    }
+  }
+  if (toFree.length) G.msgs.wfree = 'nu zonder spoor: ' + [...new Set(((G.msgs.wfree || '').replace('nu zonder spoor: ', '').split(' ').filter(Boolean)).concat(toFree))].join(' ');
+  if (toDone.length) G.msgs.wdone = 'geleerd: ' + [...new Set(((G.msgs.wdone || '').replace('geleerd: ', '').split(' ').filter(Boolean)).concat(toDone))].join(' ');
+  save();
+}
+const ghostOn = () => S.ghostMode === 'on' || (S.ghostMode === 'auto' && !S.digFree);
+function digResult(clean) {
+  if (S.ghostMode !== 'auto') return;
+  S.digRun.push(clean ? 1 : 0); while (S.digRun.length > 4) S.digRun.shift();
+  const r = S.digRun;
+  if (!S.digFree && r.length >= 4 && r.every(x => x)) { S.digFree = true; S.digRun = []; G.msgs.dig = 'graven zonder voorbeeld'; }
+  else if (S.digFree && r.length >= 2 && !r[r.length - 1] && !r[r.length - 2]) { S.digFree = false; S.digRun = []; }
+  save();
+}
+function gameOn(id) {
+  if (!S.hideDone) return true;
+  if (id === 'load') return S.mathLevel < 3;
+  if (id === 'write') return !writeDone();
+  return true;
 }
 const GAMES = { dig: gameDig, drive: gameDrive, write: gameWrite, load: gameLoad, field: gameField };
 
@@ -1635,6 +1757,10 @@ function useTicket(mode) {
 /* ---------- start en instellingen ---------- */
 function renderHome() {
   updateStars();
+  document.querySelectorAll('#cards .card').forEach(b => b.hidden = !gameOn(b.dataset.id));
+  const done = [!gameOn('load') && 'tellen tot 10', !gameOn('write') && 'alle letters schrijven'].filter(Boolean);
+  $('#learned').hidden = !done.length;
+  $('#learned').innerHTML = done.length ? 'geleerd: ' + done.map(t => `<span>${t} ✓</span>`).join('') : '';
   const left = S.goal - S.played;
   $('#rewards').hidden = !(S.goal > 0 && SIM.ok);
   document.querySelectorAll('.reward').forEach(b => b.classList.toggle('locked', S.tickets < 1));
@@ -1662,7 +1788,7 @@ function buildCards() {
     const s = el('svg', { viewBox: d.vb, 'aria-hidden': 'true' }); d.draw(s);
     const n = document.createElement('b'); n.textContent = d.name;
     const sm = document.createElement('small'); sm.textContent = d.sub;
-    b.append(s, n, sm); b.addEventListener('click', () => startGame(d.id));
+    b.dataset.id = d.id; b.append(s, n, sm); b.addEventListener('click', () => startGame(d.id));
     $('#cards').appendChild(b);
   });
 }
@@ -1703,26 +1829,36 @@ document.addEventListener('keydown', e => {
   if (/^[0-9]$/.test(e.key)) gateKey(e.key); else if (e.key === 'Enter') gateKey('ok'); else if (e.key === 'Backspace') gateKey('c'); else if (e.key === 'Escape') gateKey('x');
 });
 $('#gateOk').addEventListener('unlock', () => {
-  $('#setName').value = S.name; $('#setWord').value = S.readLevel; $('#setMath').value = S.mathLevel; $('#setRek').checked = S.rek; $('#setPre').checked = S.pre; $('#setGhostHelp').checked = S.ghostHelp;
+  $('#setName').value = S.name; $('#setWord').value = S.readLevel; $('#setMath').value = S.mathLevel; $('#setRek').checked = S.rek; $('#setPre').value = S.preMode; $('#setGhostHelp').checked = S.ghostHelp;
+  $('#setAuto').checked = S.auto; $('#setMax').value = S.readMax; $('#setHide').checked = S.hideDone; $('#setGhost').value = S.ghostMode;
+  const pool = writePool(S.readLevel), n1 = pool.filter(c => wst(c) === 1).length, n2 = pool.filter(c => wst(c) === 2).length;
+  $('#statWrite').textContent = `${pool.length} letters: ${n2} beheerst, ${n1} oefent zonder spoor, ${pool.length - n1 - n2} nog met spoor.`;
+  $('#wrLetters').innerHTML = pool.map(c => `<i class="s${wst(c)}">${c}</i>`).join('');
   $('#setGoal').value = S.goal; $('#setMin').value = S.playMin;
-  const stat = (h, top) => {
-    if (h.length < 10) return 'Na 10 opdrachten staat hier hoe het gaat.';
+  const stat = (h, top, capped) => {
+    if (h.length < 4) return 'Na een paar opdrachten op dit niveau staat hier hoe het gaat.';
     const k = h.reduce((x, y) => x + y, 0), r = k / h.length;
-    return `Laatste ${h.length} opdrachten: ${k} in één keer goed.` + (r >= .85 && !top ? ' Het volgende niveau kan geprobeerd worden.' : r < .5 ? ' Een niveau lager geeft meer succes.' : '');
+    return `Op dit niveau: ${k} van de ${h.length} in één keer goed.` + (capped && r >= .85 ? ' Hoger gaat pas als u "niet hoger dan" verhoogt.' : S.auto ? '' : r >= .85 && !top ? ' Het volgende niveau kan geprobeerd worden.' : r < .5 ? ' Een niveau lager geeft meer succes.' : '');
   };
-  $('#statRead').textContent = stat(S.hist.read, S.readLevel >= LEVELS.length);
+  $('#statRead').textContent = stat(S.hist.read, S.readLevel >= LEVELS.length, S.readLevel >= S.readMax && S.readLevel < LEVELS.length);
   $('#statMath').textContent = stat(S.hist.math, S.mathLevel >= MATH.length);
-  $('#setGhost').checked = S.ghost; $('#setSpeech').checked = S.speech; $('#setSound').checked = S.sound; $('#setKlank').checked = S.klank;
-  $('#resetBtn').textContent = 'sterren wissen'; $('#settings').hidden = false;
+  $('#setSpeech').checked = S.speech; $('#setSound').checked = S.sound; $('#setKlank').checked = S.klank;
+  $('#resetBtn').textContent = 'sterren wissen'; $('#resetWr').textContent = 'schrijven opnieuw'; delete $('#resetWr').dataset.sure; $('#settings').hidden = false;
 });
 $('#closeSet').addEventListener('click', () => {
-  const rl = +$('#setWord').value, ml = +$('#setMath').value;
+  let rl = +$('#setWord').value, mx = +$('#setMax').value; const ml = +$('#setMath').value;
+  if (rl > mx) { if (rl !== S.readLevel) mx = rl; else rl = mx; }
+  S.readMax = mx; S.auto = $('#setAuto').checked; S.hideDone = $('#setHide').checked; S.preMode = $('#setPre').value; S.ghostMode = $('#setGhost').value;
   if (rl !== S.readLevel) S.hist.read = [];
   if (ml !== S.mathLevel) S.hist.math = [];
-  S.name = $('#setName').value.trim(); S.readLevel = rl; S.mathLevel = ml; S.rek = $('#setRek').checked; S.pre = $('#setPre').checked; S.ghostHelp = $('#setGhostHelp').checked;
+  S.name = $('#setName').value.trim(); S.readLevel = rl; S.mathLevel = ml; S.rek = $('#setRek').checked; S.ghostHelp = $('#setGhostHelp').checked;
   S.goal = +$('#setGoal').value; S.playMin = +$('#setMin').value; S.played = Math.min(S.played, Math.max(0, S.goal - 1));
-  S.ghost = $('#setGhost').checked; S.speech = $('#setSpeech').checked; S.sound = $('#setSound').checked; S.klank = $('#setKlank').checked;
+  S.speech = $('#setSpeech').checked; S.sound = $('#setSound').checked; S.klank = $('#setKlank').checked;
   save(); $('#settings').hidden = true; renderHome();
+});
+$('#resetWr').addEventListener('click', e => {
+  if (e.target.dataset.sure) { S.wr = {}; S.digFree = false; S.digRun = []; save(); delete e.target.dataset.sure; e.target.textContent = 'gewist'; $('#wrLetters').innerHTML = ''; renderHome(); }
+  else { e.target.dataset.sure = 1; e.target.textContent = 'zeker weten? tik nog eens'; }
 });
 $('#resetBtn').addEventListener('click', e => {
   if (e.target.dataset.sure) { S.stars = 0; save(); delete e.target.dataset.sure; e.target.textContent = 'gewist'; renderHome(); }
@@ -1730,7 +1866,12 @@ $('#resetBtn').addEventListener('click', e => {
 });
 if (!S.hist || !S.hist.read || !S.hist.math) S.hist = { read: [], math: [] };
 S.readLevel = Math.min(LEVELS.length, Math.max(1, S.readLevel | 0)); S.mathLevel = Math.min(MATH.length, Math.max(1, S.mathLevel | 0));
-LEVELS.forEach((v, i) => $('#setWord').add(new Option(v.n, i + 1)));
+if (!S.wr || typeof S.wr !== 'object') S.wr = {};
+if (!Array.isArray(S.digRun)) S.digRun = [];
+if (!['auto', 'on', 'off'].includes(S.preMode)) S.preMode = 'auto';
+if (!['auto', 'on', 'off'].includes(S.ghostMode)) S.ghostMode = 'auto';
+if (!S.readMax) S.readMax = Math.min(LEVELS.length, S.readLevel + 1);
+LEVELS.forEach((v, i) => { $('#setWord').add(new Option(v.n, i + 1)); $('#setMax').add(new Option(v.n, i + 1)); });
 MATH.forEach((v, i) => $('#setMath').add(new Option(`${i + 1} · ${v}`, i + 1)));
 buildCards(); renderHome();
 })();
