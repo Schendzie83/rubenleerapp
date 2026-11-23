@@ -36,6 +36,8 @@
   --paper: #fffaf0;
   --panel: #3a332c;
   --ok: #2e8b3a;
+  --title: #6b4a2e;
+  --farm-ink: #1f3d10;
   --font-read: "Andika", "Comic Sans MS", "Trebuchet MS", sans-serif;
   --font-show: "Baloo 2", "Andika", "Trebuchet MS", sans-serif;
 }
@@ -59,17 +61,17 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 4px s
 /* ---------- start ---------- */
 #home { overflow-y: auto; }
 .home-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.home-head h1 { font-family: var(--font-show); font-weight: 800; font-size: clamp(28px, 5vw, 44px); margin: 0; line-height: 1; flex: 1; min-width: 0; color: var(--soil); }
+.home-head h1 { font-family: var(--font-show); font-weight: 800; font-size: clamp(28px, 5vw, 44px); margin: 0; line-height: 1; flex: 1; min-width: 0; color: var(--title); }
 .stars { font-family: var(--font-show); font-weight: 800; font-size: 26px; background: var(--paper); border-radius: 999px; padding: 4px 16px; border: 3px solid var(--soil); white-space: nowrap; }
 .stars svg { width: 24px; height: 24px; vertical-align: -3px; }
 .parents { background: var(--paper); border: 3px solid var(--soil); border-radius: 999px; padding: 6px 16px; font-size: 16px; }
 .farm { background: var(--grass); border-radius: 22px; border: 4px solid var(--grass-deep); padding: 12px 14px 14px; }
-.farm h2 { font-family: var(--font-show); font-size: 22px; margin: 0 0 8px; color: #1f3d10; font-weight: 800; }
+.farm h2 { font-family: var(--font-show); font-size: 22px; margin: 0 0 8px; color: var(--farm-ink); font-weight: 800; }
 .stickers { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 8px; }
 .sticker { aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; font-size: 30px; background: var(--paper); border: 3px solid var(--grass-deep); }
-.sticker.locked { background: transparent; border-style: dashed; color: #2f5a17; font-family: var(--font-show); font-size: 22px; opacity: .7; }
-.next { margin-top: 10px; display: flex; align-items: center; gap: 6px; font-size: 16px; color: #1f3d10; }
-.pip { width: 20px; height: 20px; border-radius: 50%; border: 3px solid #1f3d10; }
+.sticker.locked { background: transparent; border-style: dashed; color: var(--farm-ink); font-family: var(--font-show); font-size: 22px; opacity: .7; }
+.next { margin-top: 10px; display: flex; align-items: center; gap: 6px; font-size: 16px; color: var(--farm-ink); }
+.pip { width: 20px; height: 20px; border-radius: 50%; border: 3px solid var(--farm-ink); }
 .pip.on { background: #ffd43b; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
 .card { background: var(--paper); border: 4px solid var(--soil); border-radius: 22px; padding: 10px 12px 12px; text-align: center; box-shadow: 0 6px 0 var(--soil); transition: transform .1s; }
@@ -186,11 +188,23 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
 .wl i.s2 { background: #cdeec3; border-color: var(--ok); }
 .lvlmsg { text-align: center; font-size: 20px; font-weight: 700; color: var(--ok); margin: 0 0 10px; display: grid; gap: 4px; }
 .lvlmsg:empty { display: none; }
-.learned { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 17px; color: var(--soil); }
+.learned { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 17px; color: var(--title); }
 .learned span { background: var(--paper); border: 3px solid var(--ok); border-radius: 999px; padding: 2px 12px; }
 
-.credit { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; color: var(--ink-soft); padding-block: 4px 8px; }
+.credit { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; color: var(--ink-soft); padding: 4px 14px; margin: 0 auto 8px; width: fit-content; background: var(--paper); border-radius: 999px; }
 .credit .tlogo { height: 26px; width: auto; display: block; }
+
+/* ---------- wereldkiezer ---------- */
+.sheet.wide { width: min(880px, 100%); }
+.worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+.world { border-radius: 22px; border: 4px solid var(--ink); padding: 0 0 10px; overflow: hidden; background: #fffaf0; box-shadow: 0 6px 0 #0005; text-align: center; color: var(--ink); }
+.world:active { transform: translateY(4px); box-shadow: 0 2px 0 #0005; }
+.world svg { width: 100%; height: 130px; display: block; }
+.world b { display: block; font-size: 30px; margin-top: 6px; }
+.world.on { outline: 6px solid #1d5fd1; outline-offset: 3px; }
+.world.soon { opacity: .6; box-shadow: none; cursor: default; }
+.world.soon .soon-pic { height: 130px; display: grid; place-items: center; font-size: 70px; background: #eee3cf; }
+.world.soon small { display: block; font-size: 15px; color: var(--ink-soft); }
 
 /* ---------- lagen ---------- */
 .overlay { position: fixed; inset: 0; z-index: 50; background: #2c2219cc; display: grid; place-items: center; padding: 16px; overflow-y: auto; }
@@ -221,8 +235,9 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
 
 <div id="home" class="screen">
   <div class="home-head">
-    <h1>Boerderij Leerspel</h1>
+    <h1 id="homeTitle">Boerderij Leerspel</h1>
     <span class="stars" aria-label="sterren"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21l1.5-7L2 9.300l7-.8z" fill="#ffd43b" stroke="#8a6200" stroke-width="1.5" stroke-linejoin="round"/></svg> <span id="starCount">0</span></span>
+    <button class="parents" id="openWorld">wereld</button>
     <button class="parents" id="openSet">voor ouders</button>
   </div>
   <div class="cards" id="cards"></div>
@@ -232,7 +247,7 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
     <button class="reward" id="rewardT"><svg viewBox="-95 -170 240 180" aria-hidden="true" id="rewardPicT"></svg><span><b>trekker</b><span class="rewardTxt"></span></span></button>
   </div>
   <div class="farm">
-    <h2>mijn boerderij</h2>
+    <h2 id="farmTitle">mijn boerderij</h2>
     <div class="stickers" id="stickers"></div>
     <div class="next" id="next"></div>
   </div>
@@ -283,6 +298,13 @@ svg text.emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color E
       <button class="btn" id="again">nog een keer</button>
       <button class="btn alt" id="toFarm">boerderij</button>
     </div>
+  </div>
+</div>
+
+<div class="overlay" id="worldPick" hidden>
+  <div class="sheet wide">
+    <h2>kies je wereld</h2>
+    <div class="worlds" id="worlds"></div>
   </div>
 </div>
 
@@ -443,12 +465,15 @@ const sfx = {
 };
 /* toeter: twee tonen tegelijk, zolang de knop wordt ingedrukt */
 let horn = null;
-function hornOn(low) {
+function hornOn(kind) {
   const a = audio(); if (!a || horn) return;
-  const t = a.currentTime, g = a.createGain(), lp = a.createBiquadFilter();
-  lp.type = 'lowpass'; lp.frequency.value = low ? 1300 : 2200; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.08, t + .03);
-  const os = (low ? [233, 294] : [392, 494]).map(f => { const o = a.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f; o.connect(lp); o.start(t); return o; });
-  lp.connect(g); g.connect(a.destination); horn = { g, os, t0: t };
+  const P = { exc: { f: [233, 294], type: 'sawtooth', lp: 1300, vol: .08 }, trac: { f: [392, 494], type: 'sawtooth', lp: 2200, vol: .08 },
+    space: { f: [880, 1320], type: 'square', lp: 3200, vol: .035, pulse: 7 }, unicorn: { f: [1046, 1318, 1568], type: 'triangle', lp: 6000, vol: .06, pulse: 5 } }[kind] || { f: [392, 494], type: 'sawtooth', lp: 2200, vol: .08 };
+  const t = a.currentTime, g = a.createGain(), lp = a.createBiquadFilter(), out = a.createGain();
+  lp.type = 'lowpass'; lp.frequency.value = P.lp; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(P.vol, t + .03);
+  const os = P.f.map(f => { const o = a.createOscillator(); o.type = P.type; o.frequency.value = f; o.connect(lp); o.start(t); return o; });
+  if (P.pulse) { out.gain.value = .5; const l = a.createOscillator(), lg = a.createGain(); l.type = 'square'; l.frequency.value = P.pulse; lg.gain.value = .5; l.connect(lg); lg.connect(out.gain); l.start(t); os.push(l); }
+  lp.connect(g); g.connect(out); out.connect(a.destination); horn = { g, os, t0: t };
 }
 function hornOff() {
   if (!horn) return; const h = horn; horn = null;
@@ -508,11 +533,6 @@ function allWords(L) { let out = []; for (let i = 1; i <= L; i++) out = out.conc
 function letters(L) { return L > 6 ? LETTERS : LEVELS.slice(0, L).flatMap(v => v.l.split(' ')); }
 const KLANK = { aa: 'aa', ee: 'ee', oo: 'oo', uu: 'uu', oe: 'oe', ie: 'ie', ei: 'ei', ij: 'ei', ui: 'ui', eu: 'eu', ou: 'au', au: 'au', a: 'ah', e: 'eh', i: 'ih', o: 'oh', u: 'uh', m: 'mmm', n: 'nnn', s: 'sss', f: 'fff', r: 'rrr', l: 'lll', z: 'zzz', v: 'vvv', b: 'buh', d: 'duh', k: 'kuh', p: 'puh', t: 'tuh', g: 'ggg', h: 'huh', j: 'juh', w: 'wuh', sch: 'sg', ch: 'ggg', ng: 'ng', c: 'kuh' };
 const LETTERS = ['m', 'r', 's', 'v', 'p', 't', 'n', 'b', 'k', 'l', 'd', 'h', 'z', 'w', 'j', 'g', 'f', 'a', 'e', 'i', 'o', 'u', 'aa', 'ee', 'oo', 'oe', 'ie'];
-const ANIMALS = [
-  { e: '🐄', s: 'koe', p: 'koeien' }, { e: '🐖', s: 'varken', p: 'varkens' }, { e: '🐑', s: 'schaap', p: 'schapen' },
-  { e: '🐔', s: 'kip', p: 'kippen' }, { e: '🐎', s: 'paard', p: 'paarden' }, { e: '🦆', s: 'eend', p: 'eenden' }, { e: '🐐', s: 'geit', p: 'geiten' }
-];
-const STICKERS = ['🐄', '🚜', '🐖', '🐔', '🐑', '🏗️', '🐎', '🦆', '🚛', '🐐', '🐕', '🌻', '🐓', '🐈', '🌳', '🐇', '🚚', '🦉', '🐝', '🏆'];
 const praise = () => pick(['Goed zo', 'Knap gedaan', 'Super', 'Top gewerkt', 'Wat goed']) + (S.name ? ', ' + S.name : '') + '!';
 
 /* ---------- animatie ---------- */
@@ -532,26 +552,231 @@ function tween(ms, fn) {
 }
 const lerp = (a, b, p) => a + (b - a) * p;
 
+/* ---------- werelden: alles wat per thema verschilt staat hier ---------- */
+const RAINBOW = ['#ff8fb1', '#ffb35c', '#ffe066', '#7fe0b0', '#7fc4ff', '#b79cff'];
+function stars(svg, n, h, col) { for (let i = 0; i < n; i++) el('circle', { cx: rnd(1000), cy: 4 + rnd(h - 8), r: .8 + Math.random() * 1.8, fill: col || '#ffffff', opacity: .4 + Math.random() * .6 }, svg); }
+function cloud(svg, x, y, s, fill) { [[0, 0, 60, 20], [30, -14, 36, 18], [-28, -8, 30, 16]].forEach(([dx, dy, rx, ry]) => el('ellipse', { cx: x + dx * s, cy: y + dy * s, rx: rx * s, ry: ry * s, fill: fill || '#fff' }, svg)); }
+function rainbowArc(svg, x, y, r) { RAINBOW.forEach((c, i) => el('path', { d: `M${x - r + i * 9},${y} A${r - i * 9},${r - i * 9} 0 0 1 ${x + r - i * 9},${y}`, fill: 'none', stroke: c, 'stroke-width': 9 }, svg)); }
+function makeRocket(parent) {
+  const g = el('g', {}, parent), flame = el('g', {}, g);
+  el('path', { d: 'M-62,-80 L-124,-98 Q-102,-80 -124,-62 Z', fill: '#ff9f1c' }, flame);
+  el('path', { d: 'M-62,-80 L-100,-89 Q-90,-80 -100,-71 Z', fill: '#fff1a0' }, flame);
+  el('path', { d: 'M-34,-108 L-72,-146 L-8,-110 Z', fill: '#e24a3b' }, g);
+  el('path', { d: 'M-34,-52 L-72,-14 L-8,-50 Z', fill: '#e24a3b' }, g);
+  el('path', { d: 'M-64,-112 H62 Q112,-102 130,-80 Q112,-58 62,-48 H-64 Q-72,-80 -64,-112 Z', fill: '#eef2f8', stroke: '#8f9bb0', 'stroke-width': 3 }, g);
+  el('path', { d: 'M92,-105 Q120,-95 130,-80 Q120,-65 92,-55 Z', fill: '#e24a3b' }, g);
+  el('rect', { x: -62, y: -111, width: 14, height: 62, fill: '#e24a3b' }, g);
+  el('circle', { cx: 40, cy: -80, r: 18, fill: '#5ec8f2', stroke: '#8f9bb0', 'stroke-width': 5 }, g);
+  el('circle', { cx: 34, cy: -86, r: 5, fill: '#fff', opacity: .85 }, g);
+  return { g, place(x, y) { g.setAttribute('transform', `translate(${x},${y})`); flame.setAttribute('transform', `translate(-62,-80) scale(${.75 + Math.abs(Math.sin(x * .35)) * .45},1) translate(62,80)`); } };
+}
+function makeUnicorn(parent) {
+  const g = el('g', {}, parent), legs = [], LX = [-36, -16, 30, 50], line = { stroke: '#d6c8f2', 'stroke-width': 3 };
+  RAINBOW.forEach((c, i) => el('path', { d: `M-48,${-90 + i * 4} q-36,${-6 + i * 5} -42,${28 + i * 7}`, fill: 'none', stroke: c, 'stroke-width': 7, 'stroke-linecap': 'round' }, g));
+  LX.forEach((x, i) => { const l = el('g', {}, g); el('rect', Object.assign({ x: -7, y: 0, width: 14, height: 44, rx: 7, fill: i % 3 ? '#f1ecff' : '#ffffff' }, line), l); el('rect', { x: -8, y: 40, width: 16, height: 10, rx: 4, fill: '#f2c94c' }, l); legs.push(l); });
+  el('ellipse', Object.assign({ cx: 8, cy: -72, rx: 62, ry: 32, fill: '#ffffff' }, line), g);
+  el('path', Object.assign({ d: 'M46,-90 Q58,-122 78,-134 L98,-114 Q82,-98 70,-70 Z', fill: '#ffffff' }, line), g);
+  el('ellipse', Object.assign({ cx: 94, cy: -126, rx: 26, ry: 20, fill: '#ffffff' }, line), g);
+  el('ellipse', { cx: 114, cy: -118, rx: 13, ry: 10, fill: '#ffdbe9' }, g);
+  el('path', { d: 'M86,-143 L97,-184 L103,-141 Z', fill: '#f2c94c', stroke: '#d9a92e', 'stroke-width': 2 }, g);
+  el('circle', { cx: 98, cy: -130, r: 4, fill: '#3a2a4a' }, g);
+  el('ellipse', { cx: 104, cy: -118, rx: 6, ry: 4, fill: '#ffb3cf', opacity: .8 }, g);
+  RAINBOW.forEach((c, i) => el('circle', { cx: 74 - i * 5.5, cy: -142 + i * 10, r: 9, fill: c }, g));
+  el('ellipse', Object.assign({ cx: 84, cy: -144, rx: 6, ry: 10, fill: '#ffffff', transform: 'rotate(-18 84 -144)' }, line), g);
+  return { g, place(x, y) { g.setAttribute('transform', `translate(${x},${y})`); legs.forEach((l, i) => l.setAttribute('transform', `translate(${LX[i]},-50) rotate(${Math.sin(x * .12 + i * 1.7) * 14})`)); } };
+}
+const heapMound = (x, w, top) => `M${x - w},500 Q${x - w * .63},${top + 6} ${x},${top} Q${x + w * .63},${top + 6} ${x + w},500 Z`;
+const heapCloud = (x, w, top) => `M${x - w},500 Q${x - w * 1.12},${top + 62} ${x - w * .55},${top + 56} Q${x - w * .5},${top + 4} ${x},${top + 12} Q${x + w * .5},${top - 8} ${x + w * .62},${top + 50} Q${x + w * 1.16},${top + 56} ${x + w},500 Z`;
+
+const THEMES = {
+  farm: {
+    name: 'boerderij', title: 'Boerderij Leerspel', farm: 'mijn boerderij', fresh: 'nieuw op je boerderij', freshSay: 'Je krijgt iets nieuws voor je boerderij.',
+    css: {},
+    ex: { track: '#3a332c', wheel: '#8d8478', deck: '#5b5148', pipe: '#3a332c', hood: '#e0a100', body: '#f7b500', glass: '#bfe6f5', piston: '#9aa0a6', armDeep: '#8a6200', arm: '#f7b500', joint: '#3a332c', load: '#e9c46a', loadLine: '#8a6200', bucket: '#4a4038' },
+    driver: makeTractor,
+    truck: { chassis: '#3a332c', bed: '#2f6fb0', cab: '#3d85cc', glass: '#bfe6f5', tire: '#2f2a26', hub: '#c9ced3' },
+    blob: ['#e9c46a'], blobLine: '#8a6200',
+    heap: { shape: heapMound, fill: '#e9c46a', line: '#c79a3a', front: '#dcb455' },
+    pit(svg) {
+      el('rect', { x: 0, y: 0, width: 1000, height: 230, fill: '#c4e6f6' }, svg);
+      el('circle', { cx: 920, cy: 60, r: 38, fill: '#ffe27a' }, svg);
+      cloud(svg, 160, 60, 1); cloud(svg, 520, 40, 1);
+      el('path', { d: 'M0,190 Q250,130 500,180 T1000,160 V230 H0 Z', fill: '#9ccb6b' }, svg);
+      el('rect', { x: 0, y: 230, width: 1000, height: 290, fill: '#cfa873' }, svg);
+      el('path', { d: 'M0,300 Q250,280 500,305 T1000,295 M0,380 Q300,400 600,375 T1000,390', fill: 'none', stroke: '#b98f5a', 'stroke-width': 6 }, svg);
+      el('rect', { x: 0, y: 226, width: 1000, height: 18, fill: '#6b4a2e' }, svg);
+      el('rect', { x: 0, y: 500, width: 1000, height: 20, fill: '#a5814f' }, svg);
+    },
+    drive: {
+      bg(svg) {
+        const defs = el('defs', {}, svg);
+        const pat = el('pattern', { id: 'tuft', width: 46, height: 40, patternUnits: 'userSpaceOnUse' }, defs);
+        el('path', { d: 'M8,30 l4,-14 l3,14 M30,16 l4,-12 l3,12', fill: 'none', stroke: '#4f8f2c', 'stroke-width': 3, 'stroke-linecap': 'round' }, pat);
+        const pat2 = el('pattern', { id: 'mown', width: 30, height: 20, patternUnits: 'userSpaceOnUse' }, defs);
+        el('path', { d: 'M0,10 h18', stroke: '#9cc45c', 'stroke-width': 3, 'stroke-linecap': 'round' }, pat2);
+        el('rect', { x: 0, y: 0, width: 1000, height: 80, fill: '#c4e6f6' }, svg);
+        el('circle', { cx: 80, cy: 40, r: 28, fill: '#ffe27a' }, svg);
+        el('path', { d: 'M0,80 Q250,30 520,66 T1000,50 V80 Z', fill: '#9ccb6b' }, svg);
+      },
+      lane: ['#7fbf4f', '#74b346'], pat: 'url(#tuft)', trail: ['#bfdc86'], trailPat: 'url(#mown)', divider: '#6b4a2e'
+    },
+    write: { bg: '#7fbf4f', guide: '#fffaf0', road: '#f0dfb0', ink: '#6b4a2e' },
+    field: {
+      bg(svg) {
+        el('rect', { x: 0, y: 0, width: 1000, height: 130, fill: '#c4e6f6' }, svg);
+        el('circle', { cx: 90, cy: 50, r: 30, fill: '#ffe27a' }, svg);
+        el('rect', { x: 0, y: 120, width: 1000, height: 400, fill: '#7fbf4f' }, svg);
+        el('path', { d: 'M0,120 H1000 M0,100 H1000', stroke: '#fffaf0', 'stroke-width': 7 }, svg);
+        for (let x = 20; x < 1000; x += 70) el('rect', { x, y: 86, width: 10, height: 48, rx: 3, fill: '#fffaf0' }, svg);
+        el('path', { d: 'M760,200 V96 L860,30 L960,96 V200 Z', fill: '#c5382e', stroke: '#7d1f18', 'stroke-width': 4 }, svg);
+        el('path', { d: 'M820,200 V120 H900 V200 M820,120 L900,200 M900,120 L820,200', fill: '#8f211a', stroke: '#fffaf0', 'stroke-width': 5 }, svg);
+      },
+      shadow: '#5f9a35', big8: { s: 'baal hooi', p: 'balen hooi', fill: '#e9c46a' }
+    },
+    counters: [
+      { e: '🐄', s: 'koe', p: 'koeien' }, { e: '🐖', s: 'varken', p: 'varkens' }, { e: '🐑', s: 'schaap', p: 'schapen' },
+      { e: '🐔', s: 'kip', p: 'kippen' }, { e: '🐎', s: 'paard', p: 'paarden' }, { e: '🦆', s: 'eend', p: 'eenden' }, { e: '🐐', s: 'geit', p: 'geiten' }
+    ],
+    stickers: ['🐄', '🚜', '🐖', '🐔', '🐑', '🏗️', '🐎', '🦆', '🚛', '🐐', '🐕', '🌻', '🐓', '🐈', '🌳', '🐇', '🚚', '🦉', '🐝', '🏆'],
+    cards: { dig: ['graaf', 'maak het woord'], drive: ['rij', 'lees het woord'], write: ['schrijf', 'rijd de letter'], load: ['tel', 'schep zand in de wagen'], field: ['wei', 'hoeveel dieren?'] },
+    fieldCard: ['🐄', '🐖', '🐑'], fieldGround: '#7fbf4f',
+    say: { load: n => `Schep ${n} keer zand in de kiepwagen.`, full: 'De wagen is vol!', drive: 'Lees het woord. Rijd naar het goede plaatje.', simExc: 'Druk op start. Dan gaat de motor aan.', simTrac: 'Druk op start. Zet de maaier aan en geef gas.' },
+    reward: ['graafmachine', 'trekker'], cart: 'wagen',
+    pickBg: '#c4e6f6', pickGround: '#7dbb4c'
+  },
+  space: {
+    name: 'ruimte', title: 'Ruimte Leerspel', farm: 'mijn ruimtestation', fresh: 'nieuw in je ruimtestation', freshSay: 'Je krijgt iets nieuws voor je ruimtestation.',
+    css: { '--sky': '#141b45', '--title': '#ffd166', '--soil': '#3d4b8f', '--grass': '#26306a', '--grass-deep': '#4b5bb0', '--farm-ink': '#eef1ff', '--machine': '#ffd166', '--machine-deep': '#a07a10', '--paper': '#f6f7ff', '--panel': '#1b2350', '--sand': '#c9d2de' },
+    ex: { track: '#4a5568', wheel: '#a0aec0', deck: '#718096', pipe: '#e24a3b', hood: '#e24a3b', body: '#eef2f8', glass: '#5ec8f2', piston: '#c3cad6', armDeep: '#7f8ea3', arm: '#eef2f8', joint: '#4a5568', load: '#a7adb8', loadLine: '#5a6578', bucket: '#5a6578' },
+    driver: makeRocket,
+    truck: { chassis: '#4a5568', bed: '#c9d2de', cab: '#eef2f8', glass: '#5ec8f2', tire: '#3a4152', hub: '#e24a3b', extra(g) { el('path', { d: 'M850,374 V350', stroke: '#8f9bb0', 'stroke-width': 4 }, g); el('path', { d: 'M834,350 Q850,328 866,350 Z', fill: '#e24a3b' }, g); } },
+    blob: ['#a7adb8', '#bfc5cf', '#9299a6'], blobLine: '#5a6578',
+    heap: { shape: heapMound, fill: '#7d8594', line: '#5f6676', front: '#6f7787' },
+    pit(svg) {
+      el('rect', { x: 0, y: 0, width: 1000, height: 230, fill: '#141b45' }, svg); stars(svg, 70, 220);
+      el('circle', { cx: 900, cy: 70, r: 40, fill: '#4a90dd' }, svg); el('path', { d: 'M872,52 q14,-10 26,0 q10,16 -6,22 q-18,4 -20,-22 Z M906,84 q14,-4 18,8 q-10,10 -18,-8 Z', fill: '#5fbf6a' }, svg);
+      el('rect', { x: 0, y: 226, width: 1000, height: 294, fill: '#a9b0bd' }, svg);
+      [[120, 300, 60], [430, 330, 40], [700, 290, 70], [880, 360, 34], [260, 420, 46], [560, 440, 52]].forEach(([x, y, r]) => { el('ellipse', { cx: x, cy: y, rx: r, ry: r * .32, fill: '#8f97a6' }, svg); el('ellipse', { cx: x, cy: y - 3, rx: r * .78, ry: r * .22, fill: '#7d8594' }, svg); });
+      el('rect', { x: 0, y: 226, width: 1000, height: 10, fill: '#7d8594' }, svg);
+      el('rect', { x: 0, y: 500, width: 1000, height: 20, fill: '#8f97a6' }, svg);
+    },
+    drive: {
+      bg(svg) {
+        const defs = el('defs', {}, svg);
+        const pat = el('pattern', { id: 'spk', width: 70, height: 50, patternUnits: 'userSpaceOnUse' }, defs);
+        [[10, 12], [44, 30], [60, 8], [24, 42]].forEach(([x, y]) => el('circle', { cx: x, cy: y, r: 1.6, fill: '#ffffff', opacity: .55 }, pat));
+        const pat2 = el('pattern', { id: 'flm', width: 26, height: 20, patternUnits: 'userSpaceOnUse' }, defs);
+        el('circle', { cx: 8, cy: 10, r: 3, fill: '#fff1a0', opacity: .8 }, pat2);
+        el('rect', { x: 0, y: 0, width: 1000, height: 80, fill: '#0e1436' }, svg); stars(svg, 30, 78);
+        el('circle', { cx: 80, cy: 40, r: 26, fill: '#e9e3c9' }, svg); el('circle', { cx: 70, cy: 34, r: 6, fill: '#cfc8aa' }, svg); el('circle', { cx: 90, cy: 50, r: 4, fill: '#cfc8aa' }, svg);
+      },
+      lane: ['#1c2558', '#222c63'], pat: 'url(#spk)', trail: ['#ff7a1c', '#ffd166', '#fff1a0', '#ffd166', '#ff7a1c'], trailOpacity: .75, divider: '#3d4b8f'
+    },
+    write: { bg: '#18205a', guide: '#8fa0e8', road: '#34407e', ink: '#ffd166', decor: svg => stars(svg, 60, 520) },
+    field: {
+      bg(svg) {
+        el('rect', { x: 0, y: 0, width: 1000, height: 130, fill: '#141b45' }, svg); stars(svg, 40, 120);
+        el('rect', { x: 0, y: 120, width: 1000, height: 400, fill: '#a9b0bd' }, svg);
+        [[200, 470, 50], [520, 480, 36], [720, 460, 44]].forEach(([x, y, r]) => el('ellipse', { cx: x, cy: y, rx: r, ry: r * .3, fill: '#959caa' }, svg));
+        el('path', { d: 'M760,200 V130 Q860,40 960,130 V200 Z', fill: '#eef2f8', stroke: '#8f9bb0', 'stroke-width': 4 }, svg);
+        el('rect', { x: 820, y: 130, width: 80, height: 70, rx: 10, fill: '#3d4b8f' }, svg);
+        el('circle', { cx: 790, cy: 120, r: 9, fill: '#5ec8f2' }, svg); el('circle', { cx: 930, cy: 120, r: 9, fill: '#5ec8f2' }, svg);
+        el('path', { d: 'M860,56 V30', stroke: '#8f9bb0', 'stroke-width': 4 }, svg); el('circle', { cx: 860, cy: 28, r: 6, fill: '#e24a3b' }, svg);
+      },
+      shadow: '#8f97a6', big8: { s: 'kist', p: 'kisten', fill: '#c9d2de' }
+    },
+    counters: [{ e: '👽', s: 'alien', p: 'aliens' }, { e: '🧑‍🚀', s: 'astronaut', p: 'astronauten' }, { e: '🤖', s: 'robot', p: 'robots' }, { e: '🛸', s: 'ufo', p: "ufo's" }, { e: '🚀', s: 'raket', p: 'raketten' }],
+    stickers: ['🚀', '🪐', '👽', '🌙', '⭐', '🛸', '🧑‍🚀', '☄️', '🌍', '🔭', '🛰️', '🤖', '🌟', '👾', '🌞', '🌠', '🌕', '🧪', '🌌', '🏆'],
+    cards: { dig: ['graaf', 'maak het woord'], drive: ['vlieg', 'lees het woord'], write: ['schrijf', 'vlieg de letter'], load: ['tel', 'laad de maanstenen'], field: ['aliens', 'hoeveel zie je?'] },
+    fieldCard: ['👽', '🧑‍🚀', '🤖'], fieldGround: '#a9b0bd',
+    say: { load: n => `Laad ${n} keer maanstenen in de rover.`, full: 'De rover is vol!', drive: 'Lees het woord. Vlieg naar het goede plaatje.', simExc: 'Druk op start. Schep maanstenen in de vrachtrover.', simTrac: 'Druk op start en geef gas. Verken de maan!' },
+    reward: ['maangraver', 'maanrover'], cart: 'rover',
+    pickBg: '#141b45', pickGround: '#a9b0bd'
+  },
+  unicorn: {
+    name: 'eenhoorns', title: 'Eenhoorn Leerspel', farm: 'mijn toverland', fresh: 'nieuw in je toverland', freshSay: 'Je krijgt iets nieuws voor je toverland.',
+    css: { '--sky': '#fde8f3', '--title': '#9b3d8a', '--soil': '#9a68c4', '--grass': '#dccdff', '--grass-deep': '#a98ae6', '--farm-ink': '#4b2a7a', '--machine': '#ff9cc2', '--machine-deep': '#c0628f', '--paper': '#fffafd', '--panel': '#6b4a9a', '--sand': '#ffd6e8' },
+    ex: { track: '#7a64b8', wheel: '#f2c94c', deck: '#9a86d6', pipe: '#ff9cc2', hood: '#ff9cc2', body: '#c9b6ff', glass: '#e4f6ff', piston: '#f2c94c', armDeep: '#c0628f', arm: '#ffb3d1', joint: '#7a64b8', load: '#ffffff', loadLine: '#c9b6ff', bucket: '#ff7fae' },
+    driver: makeUnicorn,
+    truck: { chassis: '#7a64b8', bed: '#ff9cc2', cab: '#c9b6ff', glass: '#fff3fa', tire: '#7a64b8', hub: '#f2c94c', extra(g) { el('path', { d: 'M850,410 c-8,-10 -22,-2 -14,10 l14,12 l14,-12 c8,-12 -6,-20 -14,-10 Z', fill: '#ff7fae' }, g); } },
+    blob: ['#ff9cc2', '#ffe066', '#7fe0b0', '#7fc4ff', '#b79cff'], blobLine: '#ffffff',
+    heap: { shape: heapCloud, fill: '#ffffff', line: '#d6c8f2', front: '#f6f0ff' },
+    pit(svg) {
+      el('rect', { x: 0, y: 0, width: 1000, height: 230, fill: '#fde8f3' }, svg);
+      rainbowArc(svg, 860, 220, 120); cloud(svg, 180, 70, 1); cloud(svg, 560, 50, .8);
+      el('path', { d: 'M0,190 Q250,140 500,180 T1000,165 V230 H0 Z', fill: '#bdebd0' }, svg);
+      el('rect', { x: 0, y: 230, width: 1000, height: 290, fill: '#d4f3e2' }, svg);
+      for (let i = 0; i < 26; i++) { const x = rnd(1000), y = 250 + rnd(240); el('circle', { cx: x, cy: y, r: 5, fill: pick(['#ff9cc2', '#ffe066', '#b79cff', '#ffffff']) }, svg); }
+      el('rect', { x: 0, y: 226, width: 1000, height: 10, fill: '#a6dcbc' }, svg);
+      el('rect', { x: 0, y: 500, width: 1000, height: 20, fill: '#bfe8d0' }, svg);
+    },
+    drive: {
+      bg(svg) {
+        const defs = el('defs', {}, svg);
+        const pat = el('pattern', { id: 'flw', width: 60, height: 46, patternUnits: 'userSpaceOnUse' }, defs);
+        [[12, 12, '#ff9cc2'], [42, 32, '#ffffff'], [50, 8, '#ffe066']].forEach(([x, y, c]) => el('circle', { cx: x, cy: y, r: 3.5, fill: c, opacity: .85 }, pat));
+        el('rect', { x: 0, y: 0, width: 1000, height: 80, fill: '#fde8f3' }, svg);
+        rainbowArc(svg, 900, 80, 70); cloud(svg, 120, 40, .6);
+      },
+      lane: ['#d4f3e2', '#c6eed8'], pat: 'url(#flw)', trail: RAINBOW, trailOpacity: .85, divider: '#b79cff'
+    },
+    write: { bg: '#fde8f3', guide: '#d6b4ea', road: '#ffffff', ink: '#b06ad8', decor: svg => { cloud(svg, 120, 470, .8); cloud(svg, 880, 60, .7); } },
+    field: {
+      bg(svg) {
+        el('rect', { x: 0, y: 0, width: 1000, height: 130, fill: '#fde8f3' }, svg);
+        rainbowArc(svg, 300, 130, 90); cloud(svg, 600, 50, .7);
+        el('rect', { x: 0, y: 120, width: 1000, height: 400, fill: '#d4f3e2' }, svg);
+        el('path', { d: 'M770,200 V110 H950 V200 Z', fill: '#ffc2dc', stroke: '#c0628f', 'stroke-width': 4 }, svg);
+        [[770, 70], [860, 46], [950, 70]].forEach(([x, top]) => { el('rect', { x: x - 20, y: top + 34, width: 40, height: 110 - top, fill: '#ffb3d1', stroke: '#c0628f', 'stroke-width': 4 }, svg); el('path', { d: `M${x - 26},${top + 36} L${x},${top} L${x + 26},${top + 36} Z`, fill: '#b79cff', stroke: '#7a64b8', 'stroke-width': 4 }, svg); });
+        el('path', { d: 'M834,200 V150 Q860,118 886,150 V200 Z', fill: '#9a68c4' }, svg);
+      },
+      shadow: '#a6dcbc', big8: { s: 'snoepje', p: 'snoepjes', fill: '#ffb3d1' }
+    },
+    counters: [{ e: '🦄', s: 'eenhoorn', p: 'eenhoorns' }, { e: '🦋', s: 'vlinder', p: 'vlinders' }, { e: '🐰', s: 'konijn', p: 'konijnen' }, { e: '🦢', s: 'zwaan', p: 'zwanen' }, { e: '🐱', s: 'poes', p: 'poezen' }],
+    stickers: ['🦄', '🌈', '🦋', '🌸', '⭐', '🧁', '🍭', '👑', '💖', '🐰', '🌷', '🎀', '🍓', '🦢', '🌙', '✨', '🐱', '🍰', '🌼', '🏆'],
+    cards: { dig: ['schep', 'maak het woord'], drive: ['galop', 'lees het woord'], write: ['schrijf', 'galop over de letter'], load: ['tel', 'snoep in de koets'], field: ['wei', 'hoeveel zie je?'] },
+    fieldCard: ['🦄', '🦋', '🐰'], fieldGround: '#d4f3e2',
+    say: { load: n => `Schep ${n} snoepjes in de koets.`, full: 'De koets is vol!', drive: 'Lees het woord. Galop naar het goede plaatje.', simExc: 'Druk op start. Schep suikerspin in de koets.', simTrac: 'Druk op start. Geef de eenhoorn de teugels en druk op vliegen!' },
+    reward: ['toverkraan', 'eenhoorn'], cart: 'koets',
+    pickBg: '#fde8f3', pickGround: '#d4f3e2'
+  }
+};
+const SOON = [{ name: 'bosdieren', e: '🦔' }, { name: 'voetbal', e: '⚽' }];
+let TH = THEMES.farm;
+function applyTheme() {
+  TH = THEMES[S.world] || THEMES.farm;
+  const st = document.body.style;
+  ['--sky', '--title', '--soil', '--grass', '--grass-deep', '--farm-ink', '--machine', '--machine-deep', '--paper', '--panel', '--sand'].forEach(k => st.removeProperty(k));
+  for (const k in TH.css) st.setProperty(k, TH.css[k]);
+  $('#homeTitle').textContent = TH.title; $('#farmTitle').textContent = TH.farm;
+  $('#rewardE b').textContent = TH.reward[0]; $('#rewardT b').textContent = TH.reward[1];
+  $('#goE').textContent = TH.reward[0]; $('#goT').textContent = TH.reward[1];
+  $('#freePlay').textContent = TH.reward[0] + ' proberen'; $('#freePlayT').textContent = TH.reward[1] + ' proberen';
+  const pe = $('#rewardPic'), pt = $('#rewardPicT'); pe.innerHTML = ''; pt.innerHTML = '';
+  makeExcavator(pe).set(0, 0, 165, -70); pt.setAttribute('viewBox', '-130 -190 280 200'); TH.driver(pt).place(0, 0);
+}
+
+
 /* ---------- machines tekenen ---------- */
 function makeExcavator(parent) {
-  const L1 = 180, L2 = 160;
+  const L1 = 180, L2 = 160, c = TH.ex;
   const g = el('g', {}, parent), body = el('g', {}, g);
-  el('rect', { x: -72, y: -30, width: 144, height: 30, rx: 15, fill: '#3a332c' }, body);
-  [-50, -25, 0, 25, 50].forEach(x => el('circle', { cx: x, cy: -15, r: 9, fill: '#8d8478' }, body));
-  el('rect', { x: -58, y: -48, width: 116, height: 20, rx: 4, fill: '#5b5148' }, body);
-  el('rect', { x: -56, y: -110, width: 9, height: 22, fill: '#3a332c' }, body);
-  el('rect', { x: -64, y: -92, width: 62, height: 46, rx: 8, fill: '#e0a100' }, body);
-  el('rect', { x: -10, y: -130, width: 60, height: 84, rx: 9, fill: '#f7b500' }, body);
-  el('rect', { x: 0, y: -120, width: 42, height: 38, rx: 6, fill: '#bfe6f5' }, body);
+  el('rect', { x: -72, y: -30, width: 144, height: 30, rx: 15, fill: c.track }, body);
+  [-50, -25, 0, 25, 50].forEach(x => el('circle', { cx: x, cy: -15, r: 9, fill: c.wheel }, body));
+  el('rect', { x: -58, y: -48, width: 116, height: 20, rx: 4, fill: c.deck }, body);
+  el('rect', { x: -56, y: -110, width: 9, height: 22, fill: c.pipe }, body);
+  el('rect', { x: -64, y: -92, width: 62, height: 46, rx: 8, fill: c.hood }, body);
+  el('rect', { x: -10, y: -130, width: 60, height: 84, rx: 9, fill: c.body }, body);
+  el('rect', { x: 0, y: -120, width: 42, height: 38, rx: 6, fill: c.glass }, body);
   const arm = el('g', { 'stroke-linecap': 'round' }, g);
-  const piston = el('line', { stroke: '#9aa0a6', 'stroke-width': 7 }, arm);
-  const boomO = el('line', { stroke: '#8a6200', 'stroke-width': 26 }, arm), boom = el('line', { stroke: '#f7b500', 'stroke-width': 20 }, arm);
-  const stickO = el('line', { stroke: '#8a6200', 'stroke-width': 20 }, arm), stick = el('line', { stroke: '#f7b500', 'stroke-width': 14 }, arm);
-  const j1 = el('circle', { r: 8, fill: '#3a332c' }, arm), j2 = el('circle', { r: 7, fill: '#3a332c' }, arm);
+  const piston = el('line', { stroke: c.piston, 'stroke-width': 7 }, arm);
+  const boomO = el('line', { stroke: c.armDeep, 'stroke-width': 26 }, arm), boom = el('line', { stroke: c.arm, 'stroke-width': 20 }, arm);
+  const stickO = el('line', { stroke: c.armDeep, 'stroke-width': 20 }, arm), stick = el('line', { stroke: c.arm, 'stroke-width': 14 }, arm);
+  const j1 = el('circle', { r: 8, fill: c.joint }, arm), j2 = el('circle', { r: 7, fill: c.joint }, arm);
   const bucket = el('g', {}, g);
-  const load = el('ellipse', { cx: 0, cy: -6, rx: 22, ry: 12, fill: '#e9c46a', stroke: '#8a6200', 'stroke-width': 2, visibility: 'hidden' }, bucket);
-  el('path', { d: 'M-22,-6 L22,-6 L26,10 L15,32 L-18,32 Q-28,12 -22,-6 Z', fill: '#4a4038' }, bucket);
-  el('path', { d: 'M-17,32 l5,9 l5,-9 M-3,32 l5,9 l5,-9 M10,32 l4,9 l3,-9', fill: '#4a4038' }, bucket);
+  const load = el('ellipse', { cx: 0, cy: -6, rx: 22, ry: 12, fill: c.load, stroke: c.loadLine, 'stroke-width': 2, visibility: 'hidden' }, bucket);
+  el('path', { d: 'M-22,-6 L22,-6 L26,10 L15,32 L-18,32 Q-28,12 -22,-6 Z', fill: c.bucket }, bucket);
+  el('path', { d: 'M-17,32 l5,9 l5,-9 M-3,32 l5,9 l5,-9 M10,32 l4,9 l3,-9', fill: c.bucket }, bucket);
   const st = { x: 0, y: 0, tx: 0, ty: 0 };
   function set(x, y, tx, ty) {
     st.x = x; st.y = y; st.tx = tx; st.ty = ty;
@@ -589,28 +814,19 @@ function makeTractor(parent) {
   return { g, place(x, y) { g.setAttribute('transform', `translate(${x},${y})`); w1.setAttribute('transform', `rotate(${x * 1.4})`); w2.setAttribute('transform', `rotate(${x * 2.2})`); } };
 }
 function makeTruck(parent) {
-  const g = el('g', {}, parent);
-  el('rect', { x: 585, y: 450, width: 300, height: 12, fill: '#3a332c' }, g);
-  el('rect', { x: 583, y: 384, width: 10, height: 70, rx: 3, fill: '#2f6fb0' }, g);
-  el('rect', { x: 797, y: 384, width: 10, height: 70, rx: 3, fill: '#2f6fb0' }, g);
+  const g = el('g', {}, parent), c = TH.truck;
+  el('rect', { x: 585, y: 450, width: 300, height: 12, fill: c.chassis }, g);
+  el('rect', { x: 583, y: 384, width: 10, height: 70, rx: 3, fill: c.bed }, g);
+  el('rect', { x: 797, y: 384, width: 10, height: 70, rx: 3, fill: c.bed }, g);
   const blobs = el('g', {}, g);
-  el('rect', { x: 583, y: 444, width: 224, height: 10, rx: 3, fill: '#2f6fb0' }, g);
-  el('path', { d: 'M812,456 V386 q0,-12 12,-12 h34 q10,0 16,10 l14,26 q4,6 4,14 v32 z', fill: '#3d85cc' }, g);
-  el('path', { d: 'M824,386 h30 l16,28 h-46 z', fill: '#bfe6f5' }, g);
-  [630, 700, 850].forEach(cx => { el('circle', { cx, cy: 478, r: 22, fill: '#2f2a26' }, g); el('circle', { cx, cy: 478, r: 9, fill: '#c9ced3' }, g); });
+  el('rect', { x: 583, y: 444, width: 224, height: 10, rx: 3, fill: c.bed }, g);
+  el('path', { d: 'M812,456 V386 q0,-12 12,-12 h34 q10,0 16,10 l14,26 q4,6 4,14 v32 z', fill: c.cab }, g);
+  el('path', { d: 'M824,386 h30 l16,28 h-46 z', fill: c.glass }, g);
+  [630, 700, 850].forEach(cx => { el('circle', { cx, cy: 478, r: 22, fill: c.tire }, g); el('circle', { cx, cy: 478, r: 9, fill: c.hub }, g); });
+  if (c.extra) c.extra(g);
   return { g, blobs };
 }
-function pitScene(svg) {
-  svg.setAttribute('viewBox', '0 0 1000 520');
-  el('rect', { x: 0, y: 0, width: 1000, height: 230, fill: '#c4e6f6' }, svg);
-  el('circle', { cx: 920, cy: 60, r: 38, fill: '#ffe27a' }, svg);
-  [[160, 60], [520, 40]].forEach(([x, y]) => { el('ellipse', { cx: x, cy: y, rx: 60, ry: 20, fill: '#fff' }, svg); el('ellipse', { cx: x + 30, cy: y - 14, rx: 36, ry: 18, fill: '#fff' }, svg); });
-  el('path', { d: 'M0,190 Q250,130 500,180 T1000,160 V230 H0 Z', fill: '#9ccb6b' }, svg);
-  el('rect', { x: 0, y: 230, width: 1000, height: 290, fill: '#cfa873' }, svg);
-  el('path', { d: 'M0,300 Q250,280 500,305 T1000,295 M0,380 Q300,400 600,375 T1000,390', fill: 'none', stroke: '#b98f5a', 'stroke-width': 6 }, svg);
-  el('rect', { x: 0, y: 226, width: 1000, height: 18, fill: '#6b4a2e' }, svg);
-  el('rect', { x: 0, y: 500, width: 1000, height: 20, fill: '#a5814f' }, svg);
-}
+function pitScene(svg) { svg.setAttribute('viewBox', '0 0 1000 520'); TH.pit(svg); }
 
 /* ---------- spelraam ---------- */
 const scene = $('#scene'), task = $('#task'), controls = $('#controls');
@@ -666,7 +882,7 @@ function finish() {
   engineOff();
   $('#doneStars').innerHTML = STAR.repeat(G.total);
   const n = Math.floor(S.stars / 5), ns = $('#newSticker');
-  if (n >= 1 && n <= STICKERS.length) { ns.innerHTML = `<span>${STICKERS[n - 1]}</span>nieuw op je boerderij`; } else ns.innerHTML = '';
+  if (n >= 1 && n <= TH.stickers.length) { ns.innerHTML = `<span>${TH.stickers[n - 1]}</span>${TH.fresh}`; } else ns.innerHTML = '';
   if (S.goal > 0 && SIM.ok) { S.played++; if (S.played >= S.goal) { S.played = 0; S.tickets++; } save(); }
   const rew = S.goal > 0 && SIM.ok && S.tickets > 0;
   $('#goE').hidden = $('#goT').hidden = !rew;
@@ -675,7 +891,7 @@ function finish() {
   $('#lvlMsg').innerHTML = msgs.map(m => `<span>${m}</span>`).join('');
   $('#again').hidden = !gameOn(G.id);
   $('#done').hidden = false;
-  say('Klaar! ' + praise() + (msgs.length ? ' Je gaat een stapje verder!' : '') + (rew ? ' Je mag rijden! Kies de graafmachine of de trekker.' : ns.innerHTML ? ' Je krijgt iets nieuws voor je boerderij.' : ''));
+  say('Klaar! ' + praise() + (msgs.length ? ' Je gaat een stapje verder!' : '') + (rew ? ` Je mag rijden! Kies de ${TH.reward[0]} of de ${TH.reward[1]}.` : ns.innerHTML ? ' ' + TH.freshSay : ''));
 }
 function goHome() {
   runId++; engineOff(); hornOff(); try { speechSynthesis.cancel(); } catch (e) {}
@@ -715,12 +931,12 @@ function gameDig() {
   const exc = makeExcavator(scene), carry = el('g', {}, scene), hits = el('g', {}, scene);
   const H = heaps.map((g, i) => {
     const x = hx(i), wd = 62 + g.length * 24;
-    const mound = el('path', { d: `M${x - 70},500 Q${x - 44},384 ${x},378 Q${x + 44},384 ${x + 70},500 Z`, fill: '#e9c46a', stroke: '#c79a3a', 'stroke-width': 3 }, back);
+    const mound = el('path', { d: TH.heap.shape(x, 70, 378), fill: TH.heap.fill, stroke: TH.heap.line, 'stroke-width': 3 }, back);
     const tile = el('g', { transform: `translate(${x},440)` }, tilesG);
     const ring = el('rect', { x: -wd / 2 - 8, y: -50, width: wd + 16, height: 100, rx: 20, fill: 'none', stroke: '#1d5fd1', 'stroke-width': 7, visibility: 'hidden', class: 'hint-ring' }, tile);
     el('rect', { x: -wd / 2, y: -42, width: wd, height: 84, rx: 14, fill: '#fffdf5', stroke: '#8a6200', 'stroke-width': 3 }, tile);
     el('text', { x: 0, y: 2, 'font-size': 58, 'text-anchor': 'middle', 'dominant-baseline': 'central', fill: '#2c2219' }, tile).textContent = g;
-    el('path', { d: `M${x - 70},500 Q${x},462 ${x + 70},500 Z`, fill: '#dcb455' }, front);
+    el('path', { d: `M${x - 70},500 Q${x},462 ${x + 70},500 Z`, fill: TH.heap.front }, front);
     const hit = el('rect', { x: x - 68, y: 360, width: 136, height: 150, fill: '#0000', class: 'heap-hit' }, hits);
     const h = { g, x, mound, tile, ring, empty: false };
     hit.addEventListener('click', () => { if (!G.busy && !h.empty) moveTo(i).then(dig); });
@@ -778,7 +994,7 @@ function gameDig() {
   }
   setControls([
     { icon: ICON.left, aria: 'naar links', on: () => step(-1), keys: ['ArrowLeft'] },
-    { label: 'graaf', cls: 'go', on: dig, keys: [' ', 'Enter', 'ArrowDown'] },
+    { label: TH.cards.dig[0], cls: 'go', on: dig, keys: [' ', 'Enter', 'ArrowDown'] },
     { icon: ICON.right, aria: 'naar rechts', on: () => step(1), keys: ['ArrowRight'] }
   ]);
   setTimeout(() => { if (my === runId) sayWord(); }, 300);
@@ -806,22 +1022,17 @@ function gameDrive() {
   task.append(wordEl, speakBtn(() => say(w.w)));
 
   scene.setAttribute('viewBox', '0 0 1000 500');
-  const defs = el('defs', {}, scene);
-  const pat = el('pattern', { id: 'tuft', width: 46, height: 40, patternUnits: 'userSpaceOnUse' }, defs);
-  el('path', { d: 'M8,30 l4,-14 l3,14 M30,16 l4,-12 l3,12', fill: 'none', stroke: '#4f8f2c', 'stroke-width': 3, 'stroke-linecap': 'round' }, pat);
-  const pat2 = el('pattern', { id: 'mown', width: 30, height: 20, patternUnits: 'userSpaceOnUse' }, defs);
-  el('path', { d: 'M0,10 h18', stroke: '#9cc45c', 'stroke-width': 3, 'stroke-linecap': 'round' }, pat2);
-  el('rect', { x: 0, y: 0, width: 1000, height: 80, fill: '#c4e6f6' }, scene);
-  el('circle', { cx: 80, cy: 40, r: 28, fill: '#ffe27a' }, scene);
-  el('path', { d: 'M0,80 Q250,30 520,66 T1000,50 V80 Z', fill: '#9ccb6b' }, scene);
+  const D = TH.drive; D.bg(scene);
   const laneY = i => 80 + 140 * i, mown = [], targets = [];
   for (let i = 0; i < 3; i++) {
-    el('rect', { x: 0, y: laneY(i), width: 1000, height: 140, fill: i % 2 ? '#74b346' : '#7fbf4f' }, scene);
-    el('rect', { x: 0, y: laneY(i), width: 1000, height: 140, fill: 'url(#tuft)' }, scene);
-    const m = el('g', {}, scene);
-    const r1 = el('rect', { x: 60, y: laneY(i) + 24, width: 0, height: 104, fill: '#bfdc86' }, m), r2 = el('rect', { x: 60, y: laneY(i) + 24, width: 0, height: 104, fill: 'url(#mown)' }, m);
-    mown.push({ w: 0, set(v) { if (v > this.w) { this.w = v; r1.setAttribute('width', v); r2.setAttribute('width', v); } } });
-    el('rect', { x: 0, y: laneY(i) - 3, width: 1000, height: 6, fill: '#6b4a2e' }, scene);
+    el('rect', { x: 0, y: laneY(i), width: 1000, height: 140, fill: D.lane[i % 2] }, scene);
+    if (D.pat) el('rect', { x: 0, y: laneY(i), width: 1000, height: 140, fill: D.pat }, scene);
+    // het spoor achter het voertuig: gemaaid gras, een vlammenspoor of een regenboog
+    const m = el('g', { opacity: D.trailOpacity || 1 }, scene), hh = 104 / D.trail.length;
+    const rs = D.trail.map((c, j) => el('rect', { x: 60, y: laneY(i) + 24 + j * hh, width: 0, height: hh + .5, fill: c }, m));
+    if (D.trailPat) rs.push(el('rect', { x: 60, y: laneY(i) + 24, width: 0, height: 104, fill: D.trailPat }, m));
+    mown.push({ w: 0, set(v) { if (v > this.w) { this.w = v; rs.forEach(r => r.setAttribute('width', v)); } } });
+    el('rect', { x: 0, y: laneY(i) - 3, width: 1000, height: 6, fill: D.divider }, scene);
   }
   opts.forEach((o, i) => {
     const t = el('g', { transform: `translate(890,${laneY(i) + 72})`, class: 'target' }, scene);
@@ -830,7 +1041,7 @@ function gameDrive() {
     t.addEventListener('click', () => choose(i));
     targets.push({ t, tried: false });
   });
-  const tr = makeTractor(scene), baseY = i => laneY(i) + 125;
+  const tr = TH.driver(scene), baseY = i => laneY(i) + 125;
   let tx = 110, ty = baseY(lane);
   tr.place(tx, ty);
 
@@ -865,10 +1076,10 @@ function gameDrive() {
   const move = d => { const i = lane + d; if (!G.busy && i >= 0 && i <= 2) { G.busy = true; toLane(i).then(() => G.busy = false); } };
   setControls([
     { icon: ICON.up, aria: 'omhoog', on: () => move(-1), keys: ['ArrowUp'] },
-    { label: 'rij', cls: 'drive', on: () => choose(lane), keys: [' ', 'Enter', 'ArrowRight'] },
+    { label: TH.cards.drive[0], cls: 'drive', on: () => choose(lane), keys: [' ', 'Enter', 'ArrowRight'] },
     { icon: ICON.down, aria: 'omlaag', on: () => move(1), keys: ['ArrowDown'] }
   ]);
-  if (G.round === 1) setTimeout(() => { if (my === runId) say('Lees het woord. Rijd naar het goede plaatje.'); }, 300);
+  if (G.round === 1) setTimeout(() => { if (my === runId) say(TH.say.drive); }, 300);
 }
 
 /* ---------- spel 3: kiepwagen (hoeveelheid maken) ---------- */
@@ -879,14 +1090,14 @@ function gameLoad() {
   G.lastTarget = target;
   let count = 0, miss = 0;
   const maxCount = Math.min(15, target + 3);
-  const intro = () => say(`Schep ${target} keer zand in de kiepwagen.`);
+  const intro = () => say(TH.say.load(target));
 
   const am = document.createElement('div'); am.className = 'amount';
   am.innerHTML = `<span class="lbl">schep</span><span class="num">${target}</span><span class="five">${'<i></i>'.repeat(target)}</span>`;
   task.append(am, speakBtn(intro));
 
   pitScene(scene);
-  el('path', { d: 'M350,500 Q400,356 470,348 Q540,356 590,500 Z', fill: '#e9c46a', stroke: '#c79a3a', 'stroke-width': 3 }, scene);
+  el('path', { d: TH.heap.shape(470, 120, 348), fill: TH.heap.fill, stroke: TH.heap.line, 'stroke-width': 3 }, scene);
   const truck = makeTruck(scene), ghosts = el('g', {}, truck.blobs), real = el('g', {}, truck.blobs);
   const badge = el('g', { transform: 'translate(850,318)' }, truck.g);
   el('circle', { r: 40, fill: '#fffdf5', stroke: '#6b4a2e', 'stroke-width': 4 }, badge);
@@ -905,7 +1116,7 @@ function gameLoad() {
 
   async function scoop() {
     if (G.busy) return;
-    if (count >= maxCount) { say('De wagen is vol!'); return; }
+    if (count >= maxCount) { say(TH.say.full); return; }
     G.busy = true; sfx.dig();
     await arm(REST, DIG, 330);
     exc.load.setAttribute('visibility', 'visible');
@@ -913,7 +1124,7 @@ function gameLoad() {
     if (my !== runId) return;
     exc.load.setAttribute('visibility', 'hidden');
     const [x, y] = bpos(count);
-    blobs.push(el('rect', { x, y, width: 36, height: 24, rx: 11, fill: '#e9c46a', stroke: '#8a6200', 'stroke-width': 2.500 }, real));
+    blobs.push(el('rect', { x, y, width: 36, height: 24, rx: 11, fill: TH.blob[count % TH.blob.length], stroke: TH.blobLine, 'stroke-width': 2.500 }, real));
     count++; num.textContent = count; sfx.pop(); say(String(count));
     await arm(DUMP, REST, 300);
     G.busy = false;
@@ -937,14 +1148,14 @@ function gameLoad() {
   }
   setControls([
     { label: 'eruit', on: takeOut, keys: ['Backspace', 'ArrowLeft'] },
-    { label: 'graaf', cls: 'go', on: scoop, keys: [' ', 'ArrowDown'] },
+    { label: TH.cards.dig[0], cls: 'go', on: scoop, keys: [' ', 'ArrowDown'] },
     { label: 'rij', cls: 'drive', on: go, keys: ['Enter', 'ArrowRight'] }
   ]);
 }
 
 /* ---------- spel 4: de wei (tellen, erbij, eraf) ---------- */
 function gameField() {
-  const my = runId, lv = S.mathLevel, an = lv === 8 ? { e: '', s: 'baal hooi', p: 'balen hooi' } : pick(ANIMALS);
+  const my = runId, lv = S.mathLevel, an = lv === 8 ? { e: '', s: TH.field.big8.s, p: TH.field.big8.p } : pick(TH.counters);
   const mode = lv >= 9 ? 'keer' : lv === 3 ? 'plus' : lv === 4 ? 'min' : (lv === 5 || lv === 7 || lv === 8) ? pick(['plus', 'min']) : 'tel';
   const max = lv === 1 ? 5 : lv === 8 ? 100 : (lv === 6 || lv === 7) ? 20 : 10;
   const cap = lv === 7 ? 9 : lv === 8 ? 20 : 5, big8 = lv === 8;
@@ -965,13 +1176,7 @@ function gameField() {
   if (S.rek && lv <= 7) showRek(max > 10 ? 2 : 1);
 
   scene.setAttribute('viewBox', '0 0 1000 520');
-  el('rect', { x: 0, y: 0, width: 1000, height: 130, fill: '#c4e6f6' }, scene);
-  el('circle', { cx: 90, cy: 50, r: 30, fill: '#ffe27a' }, scene);
-  el('rect', { x: 0, y: 120, width: 1000, height: 400, fill: '#7fbf4f' }, scene);
-  el('path', { d: 'M0,120 H1000 M0,100 H1000', stroke: '#fffaf0', 'stroke-width': 7 }, scene);
-  for (let x = 20; x < 1000; x += 70) el('rect', { x, y: 86, width: 10, height: 48, rx: 3, fill: '#fffaf0' }, scene);
-  el('path', { d: 'M760,200 V96 L860,30 L960,96 V200 Z', fill: '#c5382e', stroke: '#7d1f18', 'stroke-width': 4 }, scene);
-  el('path', { d: 'M820,200 V120 H900 V200 M820,120 L900,200 M900,120 L820,200', fill: '#8f211a', stroke: '#fffaf0', 'stroke-width': 5 }, scene);
+  TH.field.bg(scene);
   const keer = mode === 'keer';
   const total = big8 ? 0 : keer ? a * b : mode === 'plus' ? a + b : a, big = !keer && total <= 10;
   const cols = keer ? b : 5, rowsN = Math.ceil(total / cols) || 1;
@@ -989,7 +1194,7 @@ function gameField() {
       for (let i = 0; i < o; i++) el('rect', { x: x0 + t * 34 + 6 + (i % 5) * 26, y: 430 - Math.floor(i / 5) * 26, width: 20, height: 20, rx: 4, fill, stroke: '#6b4a2e', 'stroke-width': 2.500 }, scene);
       return x0 + t * 34 + (o ? 6 + Math.min(o, 5) * 26 : 0);
     };
-    const x1 = blocks(a, 40, '#e9c46a');
+    const x1 = blocks(a, 40, TH.field.big8.fill);
     el('text', { x: x1 + 32, y: 360, 'font-size': 60, 'font-weight': 700, 'text-anchor': 'middle', 'dominant-baseline': 'central', fill: '#2c2219' }, scene).textContent = mode === 'plus' ? '+' : '−';
     blocks(b, x1 + 64, mode === 'plus' ? '#fff3c4' : '#f0a79f');
   }
@@ -997,7 +1202,7 @@ function gameField() {
   const herd = [];
   for (let i = 0; i < total; i++) {
     const [x, y] = pos(i), g = el('g', { class: 'animal' }, scene);
-    el('ellipse', { cx: 0, cy: fs * .5, rx: fs * .5, ry: fs * .13, fill: (mode === 'plus' && i >= a) ? '#ffe27a' : '#5f9a35' }, g);
+    el('ellipse', { cx: 0, cy: fs * .5, rx: fs * .5, ry: fs * .13, fill: (mode === 'plus' && i >= a) ? '#ffe27a' : TH.field.shadow }, g);
     el('text', { x: 0, y: 0, 'font-size': fs, 'text-anchor': 'middle', 'dominant-baseline': 'central', class: 'emo' }, g).textContent = an.e;
     const bd = el('g', { transform: `translate(${fs * .45},${-fs * .45})`, visibility: 'hidden' }, g);
     const br = Math.min(20, fs * .4);
@@ -1103,23 +1308,23 @@ function gameWrite() {
   task.append(speakBtn(intro));
 
   scene.setAttribute('viewBox', '0 0 1000 520'); scene.style.touchAction = 'none';
-  el('rect', { x: 0, y: 0, width: 1000, height: 520, fill: '#7fbf4f' }, scene);
+  el('rect', { x: 0, y: 0, width: 1000, height: 520, fill: TH.write.bg }, scene); if (TH.write.decor) TH.write.decor(scene);
   const chars = [...txt].filter(c => STROKES[c]);
   const tw = chars.reduce((s, c) => s + LW(c) + 16, -16);
   const sc = Math.min(880 / tw, 2.800), g = el('g', { transform: `translate(${(1000 - tw * sc) / 2},${262 - 70 * sc}) scale(${sc})` }, scene);
-  el('path', { d: `M-30,40 H${tw + 30} M-30,100 H${tw + 30}`, stroke: '#fffaf0', 'stroke-width': 1.500, 'stroke-dasharray': '6 6', opacity: .7, fill: 'none' }, g);
+  el('path', { d: `M-30,40 H${tw + 30} M-30,100 H${tw + 30}`, stroke: TH.write.guide, 'stroke-width': 1.500, 'stroke-dasharray': '6 6', opacity: .7, fill: 'none' }, g);
   const strokes = []; let x0 = 0;
   const line = (d, x, extra) => el('path', Object.assign({ d, transform: `translate(${x},0)`, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, extra), g);
-  chars.forEach(c => { STROKES[c].forEach((d, k) => strokes.push({ d, x0, k, c, road: line(d, x0, { stroke: '#f0dfb0', 'stroke-width': 18 }) })); x0 += LW(c) + 16; });
+  chars.forEach(c => { STROKES[c].forEach((d, k) => strokes.push({ d, x0, k, c, road: line(d, x0, { stroke: TH.write.road, 'stroke-width': 18 }) })); x0 += LW(c) + 16; });
   const arrows = el('g', {}, g);
   strokes.forEach(s => {
-    s.ink = line(s.d, s.x0, { stroke: '#6b4a2e', 'stroke-width': 11 });
+    s.ink = line(s.d, s.x0, { stroke: TH.write.ink, 'stroke-width': 11 });
     s.len = s.ink.getTotalLength();
     const n = Math.max(2, Math.ceil(s.len / 2)); s.pts = [];
     for (let i = 0; i <= n; i++) { const p = s.ink.getPointAtLength(s.len * i / n); s.pts.push([p.x + s.x0, p.y]); }
     s.ink.setAttribute('stroke-dasharray', `${s.len + 1} ${s.len + 1}`);
   });
-  const twr = el('g', {}, g); makeTractor(twr).place(0, 0);
+  const twr = el('g', {}, g); TH.driver(twr).place(0, 0);
   // startstip met het nummer van de haal, en pijltjes in de schrijfrichting
   const dots = strokes.map(s => {
     const d = el('g', { transform: `translate(${s.pts[0][0]},${s.pts[0][1]})` }, g);
@@ -1353,65 +1558,161 @@ const SIM = (() => {
     }
   }
 
-  function build() {
-    R = new T.WebGLRenderer({ canvas: $('#simCanvas'), antialias: true });
-    R.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
-    R.outputEncoding = T.sRGBEncoding; R.toneMapping = T.ACESFilmicToneMapping; R.toneMappingExposure = .95;
-    R.shadowMap.enabled = true; R.shadowMap.type = T.PCFSoftShadowMap;
-    scn = new T.Scene();
-    scn.background = canvasTex(4, 512, (x, w, h) => { const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#4f9fd8'); g.addColorStop(.5, '#9fd0ef'); g.addColorStop(.75, '#e4f3fb'); g.addColorStop(1, '#e4f3fb'); x.fillStyle = g; x.fillRect(0, 0, w, h); });
-    scn.fog = new T.Fog(C(0xdcecf3), 55, 150);
-    cam = new T.PerspectiveCamera(50, 1, .1, 300);
-    scn.add(new T.HemisphereLight(C(0xdff0ff), C(0x6b5a3e), .9));
-    sun = new T.DirectionalLight(C(0xfff0d8), 2.2); sun.castShadow = true;
-    Object.assign(sun.shadow.camera, { left: -18, right: 18, top: 18, bottom: -18, near: 1, far: 80 });
-    sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -.0003; sun.shadow.normalBias = .03;
-    scn.add(sun, sun.target);
+  /* ---- de 3D-werelden: per thema een eigen omgeving, machines, kleuren en geluid ---- */
+  let builtFor = null, W3 = null, sprayM = [];
+  const RB3 = [0xff8fb1, 0xffb35c, 0xffe066, 0x7fe0b0, 0x7fc4ff, 0xb79cff];
+  const ENGINES = {
+    farm: { t1: 'sawtooth', t2: 'square', f0: 26, base: 42, span: 26, lp: 280, vol: .1, noise: 1100, start() { [0, .16, .32].forEach(t => tone(95, t, .12, 'square', .05)); } },
+    space: { t1: 'sine', t2: 'triangle', f0: 60, base: 110, span: 70, lp: 1400, vol: .05, noise: 2600, start() { [523, 659, 880].forEach((f, i) => tone(f, i * .09, .12, 'sine', .06)); } },
+    unicorn: { t1: 'sine', t2: 'sine', f0: 392, base: 523, span: 30, lp: 3000, vol: .025, noise: 5200, start() { [1046, 1318, 1568, 2093].forEach((f, i) => tone(f, i * .08, .3, 'triangle', .05)); } }
+  };
 
+  function build() {
+    if (!R) {
+      R = new T.WebGLRenderer({ canvas: $('#simCanvas'), antialias: true });
+      R.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+      R.outputEncoding = T.sRGBEncoding; R.toneMapping = T.ACESFilmicToneMapping; R.toneMappingExposure = .95;
+      R.shadowMap.enabled = true; R.shadowMap.type = T.PCFSoftShadowMap;
+      cam = new T.PerspectiveCamera(50, 1, .1, 400);
+    }
+    const id = THEMES[S.world] ? S.world : 'farm';
+    if (builtFor === id) return;
+    rams.length = 0; treads.length = 0; wheels.length = 0; fpiv.length = 0; spray = []; piles.length = 0; drops.length = 0; pileG = null;
+    scn = new T.Scene();
     const add = (geo, mat, p, x = 0, y = 0, z = 0, cast = true) => { const m = new T.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = cast; m.receiveShadow = true; p.add(m); return m; };
     const rb = (w, h, d, r, mat, p, x, y, z) => add(rbox(w, h, d, r), mat, p, x, y, z);
     const cyl = (rt, rbt, h, mat, p, x, y, z, axis, seg = 24) => { const g = new T.CylinderGeometry(rt, rbt, h, seg); if (axis === 'x') g.rotateZ(Math.PI / 2); if (axis === 'z') g.rotateX(Math.PI / 2); return add(g, mat, p, x, y, z); };
+    const ball = (r, mat, p, x, y, z, sx = 1, sy = 1, sz = 1) => { const m = add(new T.SphereGeometry(r, 22, 16), mat, p, x, y, z); m.scale.set(sx, sy, sz); return m; };
     const glass = new T.MeshStandardMaterial({ color: C(0x9ccfe6), roughness: .08, metalness: .3, transparent: true, opacity: .62 });
     const chrome = M(0xdfe3e8, { roughness: .22, metalness: .75 }), rubber = M(0x24211e, { roughness: .9 }), steel = M(0x45413c, { roughness: .6, metalness: .35 });
     const lamp = M(0xfffbe8, { emissive: 0xfff3c0, emissiveIntensity: .6 }), amber = M(0xffa31a, { emissive: 0xff8a00, emissiveIntensity: .5 });
+    const disc = (r, mat, p, y) => { const m = add(new T.CircleGeometry(r, 72), mat, p, 0, y, 0, false); m.rotation.x = -Math.PI / 2; return m; };
+    const pitTex = (base, cols, edge) => canvasTex(1024, 1024, (x, w, h) => {
+      speckle(x, w, h, base, cols, 9000, 5);
+      x.globalCompositeOperation = 'destination-out';
+      const g = x.createRadialGradient(w / 2, h / 2, w * (edge || .42), w / 2, h / 2, w / 2); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)'); x.fillStyle = g; x.fillRect(0, 0, w, h);
+    });
+    const skyTex = (stops, starN) => canvasTex(8, 512, (x, w, h) => { const g = x.createLinearGradient(0, 0, 0, h); stops.forEach(([o, c]) => g.addColorStop(o, c)); x.fillStyle = g; x.fillRect(0, 0, w, h); });
 
-    // grond, bomen, schuur en hooibalen
-    const grass = add(new T.CircleGeometry(220, 64), new T.MeshStandardMaterial({ roughness: 1, map: canvasTex(256, 256, (x, w, h) => speckle(x, w, h, '#6fae45', ['#5f9c3a', '#7fbd52', '#86c45a', '#58933a'], 1800, 3), 70) }), scn, 0, 0, 0, false);
-    grass.rotation.x = -Math.PI / 2;
-    const trunkG = new T.CylinderGeometry(.28, .4, 3, 10), crownG = new T.IcosahedronGeometry(1, 2), trunkM = M(0x6b4a2e, { roughness: .9 });
-    const leafM = [M(0x3f8a34, { roughness: .8 }), M(0x4f9a3a, { roughness: .8 }), M(0x2f7a3a, { roughness: .8 })];
-    for (let i = 0; i < 38; i++) {
-      const a = i / 38 * Math.PI * 2 + Math.random() * .2, r = 54 + Math.random() * 34, x = Math.sin(a) * r, z = Math.cos(a) * r, s = .8 + Math.random() * .6;
-      const t = new T.Group(); t.position.set(x, 0, z); t.scale.setScalar(s); scn.add(t);
-      add(trunkG, trunkM, t, 0, 1.5, 0);
-      [[0, 4.2, 0, 2.4], [.9, 3.6, .4, 1.7], [-.8, 3.8, -.3, 1.8], [.1, 5.4, -.2, 1.6]].forEach(([cx, cy, cz, cr], k) => { const m = add(crownG, leafM[(i + k) % 3], t, cx, cy, cz); m.scale.setScalar(cr); });
+    /* ---------- de wereld per thema ---------- */
+    const P = W3 = {
+      farm: {
+        sky: [[0, '#4f9fd8'], [.5, '#9fd0ef'], [.75, '#e4f3fb'], [1, '#e4f3fb']], fog: [0xdcecf3, 55, 150], hemi: [0xdff0ff, 0x6b5a3e, .9], sun: [0xfff0d8, 2.2], exposure: .95,
+        ground: ['#6fae45', ['#5f9c3a', '#7fbd52', '#86c45a', '#58933a']], pit: ['#b98f58', ['#a97f4a', '#c49a62', '#9e7442', '#cca46c']],
+        ex: { Y: 0xf5b400, Yd: 0xd99a00, bucket: 0x4b4743, track: 0x2c2825 }, truck: { bed: 0x2f74c0, rib: 0x4a90dd, cab: 0x4a90dd, rim: 0xc9ced3 },
+        pile: 0xd8b077, drop: 0xb98f5a,
+        field: { base: '#4a8a2c', dots: ['#3f7d24', '#56982f', '#467f27', '#5ea235'], when: 'mow', back: 2.4, info: 'gras', paint(x, k) { x.fillStyle = this.dir > 0 ? '#9fd46a' : '#86c254'; x.fillRect(-1.6 * k, -.7 * k, 3.2 * k, 1.4 * k); } },
+        toggle: ['maaier uit', 'maaier aan'], pedals: ['rem', 'gas', 'stuur'],
+        spray: { geo: new T.BoxGeometry(.07, .03, .12), cols: [0x8cc85a, 0x6fae45], at: [1.7, .55, -2.45], side: 3.5, up: [1.5, 1.5], g: 9 }
+      },
+      space: {
+        sky: [[0, '#02030c'], [.55, '#0b1030'], [.78, '#1b2560'], [1, '#1b2560']], fog: [0x141b45, 70, 190], hemi: [0xaab8ff, 0x3a3e4a, .45], sun: [0xffffff, 1.9], exposure: .8,
+        ground: ['#858c99', ['#767d8a', '#959caa', '#6b7385', '#a0a7b3']], pit: ['#6f7787', ['#646c7b', '#7a8291', '#5c6473', '#858c99']],
+        ex: { Y: 0xeef2f8, Yd: 0xe24a3b, bucket: 0x5a6578, track: 0x3a4152 }, truck: { bed: 0xc9d2de, rib: 0xe24a3b, cab: 0xeef2f8, rim: 0xe24a3b },
+        pile: 0xa9b0bd, drop: 0x9aa1ad,
+        field: { base: '#858c99', dots: ['#767d8a', '#959caa', '#6b7385', '#a0a7b3'], when: 'move', back: .9, info: 'verkend', paint(x, k) { x.fillStyle = '#5c6473'; [-1.15, 1.15].forEach(o => x.fillRect((o - .2) * k, -.35 * k, .4 * k, .7 * k)); } },
+        toggle: ['lampen uit', 'lampen aan'], pedals: ['rem', 'gas', 'stuur'],
+        spray: { geo: new T.SphereGeometry(.09, 6, 5), cols: [0xb4bac5, 0x9aa1ad], at: [1.15, .3, -1.4], side: .6, up: [.8, 1.2], g: 1.6, both: true }
+      },
+      unicorn: {
+        sky: [[0, '#b79cff'], [.5, '#ffc7e2'], [.78, '#fff1f8'], [1, '#fff1f8']], fog: [0xffe9f4, 60, 170], hemi: [0xfff0ff, 0x8fcfa9, .6], sun: [0xfff6ea, 1.6], exposure: .78,
+        ground: ['#93d9b0', ['#84d1a4', '#a5e2bf', '#ffb8d6', '#ffe58a']], pit: ['#f7b6d2', ['#f2a6c8', '#fbc8de', '#e7b8f5', '#ffd3a8']],
+        ex: { Y: 0xc9b6ff, Yd: 0xff9cc2, bucket: 0xff7fae, track: 0x7a64b8 }, truck: { bed: 0xff9cc2, rib: 0xffffff, cab: 0xc9b6ff, rim: 0xf2c94c },
+        pile: 0xffffff, drop: 0xffe0ee,
+        field: { base: '#9bdcb6', dots: ['#8ad2a8', '#acE5c6', '#ffb8d6', '#ffe58a'], when: 'mow', back: 0, info: 'regenboog', paint(x, k) { RAINBOW.forEach((c, i) => { x.fillStyle = c; x.fillRect((-1.5 + i * .5) * k, -.4 * k, .5 * k, .8 * k); }); } },
+        toggle: ['op de grond', 'vliegen!'], pedals: ['ho', 'galop', 'teugels'],
+        spray: { geo: new T.OctahedronGeometry(.08), cols: RB3, at: [0, 1.4, -1.3], side: .8, up: [-.3, 1.2], g: 1.2, sparkle: true }
+      }
+    }[id];
+    P.engine = ENGINES[id]; R.toneMappingExposure = P.exposure;
+
+    scn.background = skyTex(P.sky);
+    scn.fog = new T.Fog(C(P.fog[0]), P.fog[1], P.fog[2]);
+    scn.add(new T.HemisphereLight(C(P.hemi[0]), C(P.hemi[1]), P.hemi[2]));
+    sun = new T.DirectionalLight(C(P.sun[0]), P.sun[1]); sun.castShadow = true;
+    Object.assign(sun.shadow.camera, { left: -18, right: 18, top: 18, bottom: -18, near: 1, far: 80 });
+    sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -.0003; sun.shadow.normalBias = .03;
+    scn.add(sun, sun.target);
+    disc(220, new T.MeshStandardMaterial({ roughness: 1, map: canvasTex(256, 256, (x, w, h) => speckle(x, w, h, P.ground[0], P.ground[1], 1800, 3), 70) }), scn, 0);
+
+    /* omgeving */
+    if (id === 'farm') {
+      const trunkG = new T.CylinderGeometry(.28, .4, 3, 10), crownG = new T.IcosahedronGeometry(1, 2), trunkM = M(0x6b4a2e, { roughness: .9 });
+      const leafM = [M(0x3f8a34, { roughness: .8 }), M(0x4f9a3a, { roughness: .8 }), M(0x2f7a3a, { roughness: .8 })];
+      for (let i = 0; i < 38; i++) {
+        const a = i / 38 * Math.PI * 2 + Math.random() * .2, r = 54 + Math.random() * 34, s = .8 + Math.random() * .6;
+        const t = new T.Group(); t.position.set(Math.sin(a) * r, 0, Math.cos(a) * r); t.scale.setScalar(s); scn.add(t);
+        add(trunkG, trunkM, t, 0, 1.5, 0);
+        [[0, 4.2, 0, 2.4], [.9, 3.6, .4, 1.7], [-.8, 3.8, -.3, 1.8], [.1, 5.4, -.2, 1.6]].forEach(([cx, cy, cz, cr], k) => add(crownG, leafM[(i + k) % 3], t, cx, cy, cz).scale.setScalar(cr));
+      }
+      const barn = new T.Group(); barn.position.set(-24, 0, 40); barn.rotation.y = .5; scn.add(barn);
+      const barnRed = M(0xb8332a, { roughness: .7 }), white = M(0xf4f1ea, { roughness: .6 });
+      rb(12, 6, 9, .15, barnRed, barn, 0, 3, 0);
+      const roofS = new T.Shape(); [[-6.7, 5.8], [-5, 8.3], [0, 10], [5, 8.3], [6.7, 5.8], [6.1, 5.8], [4.6, 7.8], [0, 9.4], [-4.6, 7.8], [-6.1, 5.8]].forEach(([x, y], i) => i ? roofS.lineTo(x, y) : roofS.moveTo(x, y));
+      const roofG = new T.ExtrudeGeometry(roofS, { depth: 9.8, bevelEnabled: false }); roofG.translate(0, 0, -4.9); add(roofG, M(0x4a4440, { roughness: .8 }), barn);
+      const gable = new T.Shape(); [[-6, 5.9], [-4.55, 7.75], [0, 9.35], [4.55, 7.75], [6, 5.9]].forEach(([x, y], i) => i ? gable.lineTo(x, y) : gable.moveTo(x, y));
+      [4.45, -4.45].forEach(z => add(new T.ShapeGeometry(gable), new T.MeshStandardMaterial({ color: C(0xb8332a), roughness: .7, side: T.DoubleSide }), barn, 0, 0, z));
+      rb(4.2, 4.6, .14, .05, white, barn, 0, 2.3, -4.55); rb(3.6, 4.1, .16, .04, barnRed, barn, 0, 2.1, -4.6);
+      [.86, -.86].forEach(r => { rb(.18, 5.2, .08, .03, white, barn, 0, 2.1, -4.7).rotation.z = r; });
+      const baleG = new T.CylinderGeometry(.8, .8, 1.3, 24), baleM = new T.MeshStandardMaterial({ roughness: .95, map: canvasTex(128, 64, (x, w, h) => speckle(x, w, h, '#e3c56a', ['#c9a64a', '#f0d888', '#b8953e'], 500, 2), 2, 1) });
+      [[-12, 32, 0], [-10.3, 32.6, .3], [-11.2, 32.3, 0, 1], [-31, 31, 1]].forEach(([x, z, r, up]) => { add(baleG, baleM, scn, x, up ? 2.15 : .8, z).rotation.set(0, r, Math.PI / 2); });
     }
-    const barn = new T.Group(); barn.position.set(-24, 0, 40); barn.rotation.y = .5; scn.add(barn);
-    const barnRed = M(0xb8332a, { roughness: .7 }), white = M(0xf4f1ea, { roughness: .6 });
-    rb(12, 6, 9, .15, barnRed, barn, 0, 3, 0);
-    const roofS = new T.Shape(); roofS.moveTo(-6.7, 5.8); roofS.lineTo(-5, 8.3); roofS.lineTo(0, 10); roofS.lineTo(5, 8.3); roofS.lineTo(6.7, 5.8); roofS.lineTo(6.1, 5.8); roofS.lineTo(4.6, 7.8); roofS.lineTo(0, 9.4); roofS.lineTo(-4.6, 7.8); roofS.lineTo(-6.1, 5.8);
-    const roofG = new T.ExtrudeGeometry(roofS, { depth: 9.8, bevelEnabled: false }); roofG.translate(0, 0, -4.9); add(roofG, M(0x4a4440, { roughness: .8 }), barn);
-    const gable = new T.Shape(); gable.moveTo(-6, 5.9); gable.lineTo(-4.55, 7.75); gable.lineTo(0, 9.35); gable.lineTo(4.55, 7.75); gable.lineTo(6, 5.9);
-    [4.45, -4.45].forEach(z => add(new T.ShapeGeometry(gable), new T.MeshStandardMaterial({ color: C(0xb8332a), roughness: .7, side: T.DoubleSide }), barn, 0, 0, z));
-    rb(4.2, 4.6, .14, .05, white, barn, 0, 2.3, -4.55); rb(3.6, 4.1, .16, .04, barnRed, barn, 0, 2.1, -4.6);
-    [.86, -.86].forEach(r => { const m = rb(.18, 5.2, .08, .03, white, barn, 0, 2.1, -4.7); m.rotation.z = r; });
-    const baleG = new T.CylinderGeometry(.8, .8, 1.3, 24), baleM = new T.MeshStandardMaterial({ roughness: .95, map: canvasTex(128, 64, (x, w, h) => speckle(x, w, h, '#e3c56a', ['#c9a64a', '#f0d888', '#b8953e'], 500, 2), 2, 1) });
-    [[-12, 32, 0], [-10.3, 32.6, .3], [-11.2, 32.3, 0, 1.3], [-31, 31, 1]].forEach(([x, z, r, up]) => { const m = add(baleG, baleM, scn, x, up ? 2.15 : .8, z); m.rotation.set(0, r, Math.PI / 2); });
+    if (id === 'space') {
+      // sterren rondom, de aarde aan de hemel, kraters, rotsen, een basisstation en een geland raket
+      const starG = new T.BufferGeometry(), sp = [];
+      for (let i = 0; i < 900; i++) { const a = Math.random() * Math.PI * 2, e = .08 + Math.random() * 1.2, r = 300; sp.push(Math.cos(a) * Math.cos(e) * r, Math.sin(e) * r, Math.sin(a) * Math.cos(e) * r); }
+      starG.setAttribute('position', new T.Float32BufferAttribute(sp, 3));
+      scn.add(new T.Points(starG, new T.PointsMaterial({ color: 0xffffff, size: 1.6, sizeAttenuation: false, fog: false })));
+      const earth = new T.Mesh(new T.SphereGeometry(14, 32, 24), new T.MeshBasicMaterial({ fog: false, map: canvasTex(256, 128, (x, w, h) => { x.fillStyle = '#3f86d8'; x.fillRect(0, 0, w, h); x.fillStyle = '#5fbf6a'; [[40, 40, 30, 18], [120, 60, 36, 24], [200, 36, 26, 16], [170, 96, 20, 12]].forEach(([cx, cy, rx, ry]) => { x.beginPath(); x.ellipse(cx, cy, rx, ry, .4, 0, 7); x.fill(); }); x.fillStyle = 'rgba(255,255,255,.7)'; [[70, 20, 40, 6], [150, 100, 50, 7], [30, 90, 30, 5]].forEach(([cx, cy, rx, ry]) => { x.beginPath(); x.ellipse(cx, cy, rx, ry, 0, 0, 7); x.fill(); }); }) }));
+      earth.position.set(-90, 70, 170); scn.add(earth);
+      const rockG = new T.IcosahedronGeometry(1, 1), rockM = [M(0x8a919e, { roughness: .95 }), M(0x737b8a, { roughness: .95 }), M(0x9aa1ad, { roughness: .95 })];
+      for (let i = 0; i < 46; i++) { const a = Math.random() * Math.PI * 2, r = 50 + Math.random() * 45, s = .5 + Math.random() * 2.2; const m = add(rockG, rockM[i % 3], scn, Math.sin(a) * r, s * .35, Math.cos(a) * r); m.scale.set(s * (1 + Math.random() * .6), s * .7, s); m.rotation.y = Math.random() * 3; }
+      const craterM = M(0x858c99, { roughness: 1 });
+      for (let i = 0; i < 14; i++) { const a = Math.random() * Math.PI * 2, r = 52 + Math.random() * 40, R0 = 2 + Math.random() * 5; const m = add(new T.TorusGeometry(R0, R0 * .18, 8, 36), craterM, scn, Math.sin(a) * r, .05, Math.cos(a) * r, false); m.rotation.x = Math.PI / 2; m.scale.z = .35; }
+      const base = new T.Group(); base.position.set(-24, 0, 40); base.rotation.y = .5; scn.add(base);
+      const wht = M(0xeef2f8, { roughness: .4 }), red = M(0xe24a3b, { roughness: .45 });
+      add(new T.SphereGeometry(5, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2), wht, base);
+      cyl(5.1, 5.1, .5, steel, base, 0, .25, 0, null, 32);
+      [[-8, 0], [8, 0]].forEach(([x]) => { cyl(1.8, 1.8, 5, wht, base, x, 2, 0, 'x'); cyl(1.85, 1.85, .4, red, base, x, 2, 0, 'x'); });
+      rb(1.8, 2.6, .2, .1, M(0x3d4b8f), base, 0, 1.3, -4.95);
+      [[-2.4, 3.2], [2.4, 3.2], [0, 4.4]].forEach(([x, y]) => add(new T.SphereGeometry(.5, 16, 12), M(0x5ec8f2, { emissive: 0x5ec8f2, emissiveIntensity: .5 }), base, x, y, -4.3, false));
+      cyl(.12, .12, 7, steel, base, 6, 3.5, 4, null, 10); add(new T.SphereGeometry(.35, 12, 10), M(0xff4a3b, { emissive: 0xff3020, emissiveIntensity: 1 }), base, 6, 7.1, 4, false);
+      const rk = new T.Group(); rk.position.set(26, 0, 36); scn.add(rk);
+      cyl(1.3, 1.3, 7, wht, rk, 0, 4.5, 0, null, 24); add(new T.ConeGeometry(1.3, 2.6, 24), red, rk, 0, 9.3, 0); cyl(1.32, 1.32, .8, red, rk, 0, 3, 0, null, 24);
+      add(new T.SphereGeometry(.55, 16, 12), M(0x5ec8f2), rk, 0, 6, 1.15, false);
+      [0, 2.1, 4.2].forEach(a => { const f = rb(.15, 2.2, 1.6, .06, red, rk, Math.sin(a) * 1.4, 1.4, Math.cos(a) * 1.4); f.rotation.y = a; });
+    }
+    if (id === 'unicorn') {
+      // snoepbomen, een kasteel, een regenboog en zwevende wolken
+      const stickG = new T.CylinderGeometry(.18, .18, 3.4, 10), lollyG = new T.SphereGeometry(1, 24, 16);
+      const lollyM = [M(0xff9cc2, { roughness: .35 }), M(0xc9b6ff, { roughness: .35 }), M(0x9fe7c4, { roughness: .35 }), M(0xffd59e, { roughness: .35 }), M(0x9fd2ff, { roughness: .35 })], stickM = M(0xfff6fb, { roughness: .4 });
+      for (let i = 0; i < 38; i++) {
+        const a = i / 38 * Math.PI * 2 + Math.random() * .2, r = 54 + Math.random() * 34, s = .8 + Math.random() * .6;
+        const t = new T.Group(); t.position.set(Math.sin(a) * r, 0, Math.cos(a) * r); t.scale.setScalar(s); scn.add(t);
+        add(stickG, stickM, t, 0, 1.7, 0); add(lollyG, lollyM[i % 5], t, 0, 4.6, 0).scale.set(2, 2, 2);
+        add(new T.TorusGeometry(1.4, .22, 8, 28), lollyM[(i + 2) % 5], t, 0, 4.6, 0).rotation.y = i;
+      }
+      const castle = new T.Group(); castle.position.set(-24, 0, 40); castle.rotation.y = .5; scn.add(castle);
+      const pinkW = M(0xffc2dc, { roughness: .5 }), lil = M(0xb79cff, { roughness: .4 }), gold = M(0xf2c94c, { roughness: .3, metalness: .4 });
+      rb(11, 5, 7, .3, pinkW, castle, 0, 2.5, 0);
+      cyl(2.6, 2.6, 10, M(0xffb3d1, { roughness: .5 }), castle, 0, 5, 0, null, 28); add(new T.ConeGeometry(3, 4.5, 28), lil, castle, 0, 12.2, 0);
+      [[-5.5, -3.5], [5.5, -3.5], [-5.5, 3.5], [5.5, 3.5]].forEach(([x, z]) => { cyl(1.3, 1.3, 7, pinkW, castle, x, 3.5, z, null, 20); add(new T.ConeGeometry(1.6, 3, 20), lil, castle, x, 8.5, z); add(new T.SphereGeometry(.3, 10, 8), gold, castle, x, 10.1, z); });
+      add(new T.SphereGeometry(.4, 12, 10), gold, castle, 0, 14.6, 0);
+      rb(2.2, 3, .3, .9, M(0x9a68c4), castle, 0, 1.5, -3.55);
+      RB3.forEach((c, i) => { const m = add(new T.TorusGeometry(26 - i * 1.3, .65, 10, 64, Math.PI), new T.MeshStandardMaterial({ color: C(c), roughness: .5, emissive: C(c), emissiveIntensity: .25, fog: false }), scn, 30, 0, 110, false); m.rotation.y = -.3; });
+      const cloudM = M(0xffffff, { roughness: .9 });
+      for (let i = 0; i < 12; i++) { const cg = new T.Group(); const a = Math.random() * Math.PI * 2, r = 40 + Math.random() * 60; cg.position.set(Math.sin(a) * r, 14 + Math.random() * 10, Math.cos(a) * r); scn.add(cg); [[0, 0, 0, 2.6], [2.4, -.4, .3, 2], [-2.3, -.5, -.2, 1.9], [.6, 1, .2, 1.8]].forEach(([x, y, z, s]) => add(lollyG, cloudM, cg, x, y, z, false).scale.setScalar(s)); }
+    }
 
     /* ---------------- graafmachine ---------------- */
     ew = new T.Group(); scn.add(ew);
-    const pit = add(new T.CircleGeometry(46, 72), new T.MeshStandardMaterial({ roughness: 1, transparent: true, map: canvasTex(1024, 1024, (x, w, h) => {
-      speckle(x, w, h, '#b98f58', ['#a97f4a', '#c49a62', '#9e7442', '#cca46c'], 9000, 5);
-      x.globalCompositeOperation = 'destination-out'; const g2 = x.createRadialGradient(w / 2, h / 2, w * .42, w / 2, h / 2, w / 2); g2.addColorStop(0, 'rgba(0,0,0,0)'); g2.addColorStop(1, 'rgba(0,0,0,1)'); x.fillStyle = g2; x.fillRect(0, 0, w, h);
-    }) }), ew, 0, .02, 0, false);
-    pit.rotation.x = -Math.PI / 2;
-    const Y = M(0xf5b400, { roughness: .38 }), Yd = M(0xd99a00, { roughness: .45 }), bucketM = M(0x4b4743, { roughness: .55, metalness: .35 });
-
+    disc(46, new T.MeshStandardMaterial({ roughness: 1, transparent: true, map: pitTex(P.pit[0], P.pit[1]) }), ew, .02);
+    const Y = M(P.ex.Y, { roughness: .38 }), Yd = M(P.ex.Yd, { roughness: .45 }), bucketM = M(P.ex.bucket, { roughness: .55, metalness: .3 });
     chassis = new T.Group(); ew.add(chassis);
     [1, -1].forEach(sx => {
       const tex = canvasTex(64, 16, (x, w, h) => { x.fillStyle = '#26221f'; x.fillRect(0, 0, w, h); x.fillStyle = '#4a443d'; x.fillRect(4, 0, 30, h); x.fillStyle = '#5a534b'; x.fillRect(8, 0, 8, h); }, 4.5, 1);
       const track = stadium(3.9, .8); track.holes.push(stadium(3.62, .56, T.Path));
-      add(slab(track, .7, .04, 20), [M(0x2c2825, { roughness: .85 }), new T.MeshStandardMaterial({ map: tex, roughness: .85 })], chassis, sx * 1.05, .4, 0);
+      add(slab(track, .7, .04, 20), [M(P.ex.track, { roughness: .85 }), new T.MeshStandardMaterial({ map: tex, roughness: .85 })], chassis, sx * 1.05, .4, 0);
       treads.push(tex);
       rb(.42, .3, 2.7, .08, steel, chassis, sx * 1.05, .44, 0);
       [-1.53, 1.53].forEach(z => { cyl(.26, .26, .46, steel, chassis, sx * 1.05, .4, z, 'x'); cyl(.12, .12, .5, Yd, chassis, sx * 1.05, .4, z, 'x'); });
@@ -1419,7 +1720,6 @@ const SIM = (() => {
     });
     rb(1.5, .32, 2.3, .1, steel, chassis, 0, .52, 0);
     cyl(.86, .9, .16, steel, chassis, 0, .73, 0, null, 32);
-
     upper = new T.Group(); upper.position.y = .8; chassis.add(upper);
     rb(2.4, .45, 3, .16, Y, upper, 0, .22, -.3);
     rb(2.46, .92, 1.08, .4, Yd, upper, 0, .9, -1.3);
@@ -1435,7 +1735,8 @@ const SIM = (() => {
     cyl(.07, .08, .12, amber, upper, .4, 2.23, 0, null, 14);
     rb(.62, .55, .6, .14, Yd, upper, -.3, .72, .85);
     add(rbox(.12, .1, .05, .03), lamp, upper, .32, 2.02, 1.04, false); add(rbox(.12, .1, .05, .03), lamp, upper, 1.04, 2.02, 1.04, false);
-
+    if (id === 'space') { cyl(.02, .02, .9, steel, upper, 1.05, 2.55, .1, null, 8); add(new T.SphereGeometry(.22, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), M(0xeef2f8), upper, 1.05, 3, .1).rotation.x = .6; }
+    if (id === 'unicorn') { add(new T.ConeGeometry(.14, .7, 14), M(0xf2c94c, { roughness: .3, metalness: .4 }), upper, .68, 2.5, .6).rotation.x = .3; }
     boomG = new T.Group(); boomG.position.set(-.3, .75, .9); upper.add(boomG);
     const bs = new T.Shape(); bs.moveTo(-.12, -.22); bs.quadraticCurveTo(1.1, -.14, 1.7, .06); bs.quadraticCurveTo(2.6, -.12, 3.72, -.16);
     bs.quadraticCurveTo(3.86, 0, 3.72, .16); bs.quadraticCurveTo(2.75, .26, 1.9, .54); bs.quadraticCurveTo(1.62, .64, 1.36, .5); bs.quadraticCurveTo(.6, .3, -.12, .24); bs.quadraticCurveTo(-.3, 0, -.12, -.22);
@@ -1453,9 +1754,8 @@ const SIM = (() => {
     [.52, -.52].forEach(x => add(slab(side, .05, .01, 28), bucketM, bucketG, x, 0, 0));
     const tz = bx + .6 * Math.cos(A2), ty = by + .6 * Math.sin(A2), dz = Math.sin(A2), dy = -Math.cos(A2), toothG = new T.ConeGeometry(.055, .2, 10);
     [-.36, -.12, .12, .36].forEach(x => { const m = add(toothG, steel, bucketG, x, ty + dy * .08, tz + dz * .08); m.rotation.x = Math.atan2(dz, dy); });
-    fill = add(new T.SphereGeometry(.5, 20, 14), M(0xb98f5a, { roughness: 1 }), bucketG, 0, -.2, .52); fill.scale.set(1, .95, .9); fill.visible = false;
+    fill = add(new T.SphereGeometry(.5, 20, 14), M(P.drop, { roughness: 1 }), bucketG, 0, -.2, .52); fill.scale.set(1, .95, .9); fill.visible = false;
     tip = new T.Object3D(); tip.position.set(0, -.2, 1.08); bucketG.add(tip);
-    // hydraulische cilinders: een cilinder met een glimmende zuigerstang die meeschuift
     const ram = (pa, la, pb, lb, r) => {
       const barrel = add(new T.CylinderGeometry(r, r, 1, 16), Yd, ew), rod = add(new T.CylinderGeometry(r * .5, r * .5, 1, 12), chrome, ew);
       rams.push({ pa, la: new T.Vector3(...la), pb, lb: new T.Vector3(...lb), barrel, rod });
@@ -1464,80 +1764,144 @@ const SIM = (() => {
     ram(boomG, [0, .52, 1.6], stickG, [0, .34, -.5], .09);
     ram(stickG, [0, .27, 1.1], bucketG, [0, .42, .28], .075);
 
+    // kiepwagen, vrachtrover of koets
     truck = new T.Group(); ew.add(truck);
-    const blue = M(0x2f74c0, { roughness: .4 }), blueL = M(0x4a90dd, { roughness: .35 });
+    const bed = M(P.truck.bed, { roughness: .4 }), rib = M(P.truck.rib, { roughness: .35 }), cabM = M(P.truck.cab, { roughness: .35 });
     rb(2, .34, 6.4, .06, steel, truck, 0, .86, .9);
-    rb(2.6, .16, 4.2, .06, blue, truck, 0, 1.1, 0);
-    [1.27, -1.27].forEach(x => rb(.12, .8, 4.2, .05, blue, truck, x, 1.5, 0));
-    [2.07, -2.07].forEach(z => rb(2.6, .8, .12, .05, blue, truck, 0, 1.5, z));
-    [-1.3, 0, 1.3].forEach(z => [1.34, -1.34].forEach(x => rb(.05, .7, .1, .02, blueL, truck, x, 1.5, z)));
-    rb(2.4, 1.9, 1.7, .32, blueL, truck, 0, 1.95, 3.2);
+    rb(2.6, .16, 4.2, .06, bed, truck, 0, 1.1, 0);
+    [1.27, -1.27].forEach(x => rb(.12, .8, 4.2, .05, bed, truck, x, 1.5, 0));
+    [2.07, -2.07].forEach(z => rb(2.6, .8, .12, .05, bed, truck, 0, 1.5, z));
+    [-1.3, 0, 1.3].forEach(z => [1.34, -1.34].forEach(x => rb(.05, .7, .1, .02, rib, truck, x, 1.5, z)));
+    rb(2.4, 1.9, 1.7, .32, cabM, truck, 0, 1.95, 3.2);
     add(rbox(2.1, .75, .05, .05), glass, truck, 0, 2.4, 4.065, false);
     [1.205, -1.205].forEach(x => add(rbox(.05, .62, .95, .05), glass, truck, x, 2.4, 3.35, false));
     rb(2.5, .26, .22, .1, steel, truck, 0, 1.02, 4.12);
     [.85, -.85].forEach(x => add(rbox(.32, .16, .05, .04), lamp, truck, x, 1.4, 4.07, false));
     const tTire = tireGeo(.6, .5), tRim = new T.CylinderGeometry(.36, .36, .52, 20); tRim.rotateZ(Math.PI / 2);
-    [[1.1, -1.2], [-1.1, -1.2], [1.1, 3], [-1.1, 3]].forEach(([x, z]) => { add(tTire, rubber, truck, x, .6, z); add(tRim, M(0xc9ced3, { roughness: .35, metalness: .5 }), truck, x, .6, z); });
-    truck.fill = rb(2.4, .2, 4, .08, M(0xb98f5a, { roughness: 1 }), truck, 0, 1.2, 0); truck.fill.visible = false;
+    [[1.1, -1.2], [-1.1, -1.2], [1.1, 3], [-1.1, 3]].forEach(([x, z]) => { add(tTire, rubber, truck, x, .6, z); add(tRim, M(P.truck.rim, { roughness: .35, metalness: .5 }), truck, x, .6, z); });
+    if (id === 'space') { cyl(.03, .03, 1.2, steel, truck, .7, 3.4, 3, null, 8); add(new T.SphereGeometry(.4, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), M(0xeef2f8), truck, .7, 4, 3).rotation.x = -.5; }
+    if (id === 'unicorn') {
+      const heart = new T.Shape(); heart.moveTo(0, -.35); heart.bezierCurveTo(-.6, .1, -.3, .55, 0, .25); heart.bezierCurveTo(.3, .55, .6, .1, 0, -.35);
+      [1.22, -1.22].forEach(x => { const m = add(new T.ExtrudeGeometry(heart, { depth: .06, bevelEnabled: false }), M(0xff7fae), truck, x, 2, 3.2); m.rotation.y = x > 0 ? Math.PI / 2 : -Math.PI / 2; });
+      add(new T.ConeGeometry(.3, .5, 5), M(0xf2c94c, { roughness: .3, metalness: .4 }), truck, 0, 3.15, 3.2);
+    }
+    truck.fill = rb(2.4, .2, 4, .08, M(P.drop, { roughness: 1 }), truck, 0, 1.2, 0); truck.fill.visible = false;
 
-    /* ---------------- trekker ---------------- */
+    /* ---------------- rijden: trekker, maanrover of eenhoorn ---------------- */
     tw = new T.Group(); scn.add(tw);
     const fc = document.createElement('canvas'); fc.width = fc.height = 512; fctx = fc.getContext('2d');
     ftex = new T.CanvasTexture(fc); ftex.encoding = T.sRGBEncoding; ftex.anisotropy = Math.min(8, R.capabilities.getMaxAnisotropy());
-    const fld = add(new T.PlaneGeometry(60, 60), new T.MeshStandardMaterial({ map: ftex, roughness: 1 }), tw, 0, .04, 0, false); fld.rotation.x = -Math.PI / 2;
-    const wood = M(0x8a6a48, { roughness: .9 }), postG = new T.CylinderGeometry(.09, .1, 1.2, 10);
-    for (let i = -30; i <= 30; i += 5) [[i, -30.6], [i, 30.6], [-30.6, i], [30.6, i]].forEach(([x, z]) => add(postG, wood, tw, x, .6, z));
-    [[0, -30.6, 61.2, .1], [0, 30.6, 61.2, .1], [-30.6, 0, .1, 61.2], [30.6, 0, .1, 61.2]].forEach(([x, z, w, d]) => [.5, .95].forEach(y => add(new T.BoxGeometry(w || .1, .1, d || .1), wood, tw, x, y, z)));
-
+    add(new T.PlaneGeometry(60, 60), new T.MeshStandardMaterial({ map: ftex, roughness: 1 }), tw, 0, .04, 0, false).rotation.x = -Math.PI / 2;
+    if (id !== 'space') {
+      const wood = id === 'farm' ? M(0x8a6a48, { roughness: .9 }) : M(0xffb3d1, { roughness: .5 }), railM = id === 'farm' ? wood : M(0xffffff, { roughness: .5 }), postG = new T.CylinderGeometry(.09, .1, 1.2, 10);
+      for (let i = -30; i <= 30; i += 5) [[i, -30.6], [i, 30.6], [-30.6, i], [30.6, i]].forEach(([x, z]) => add(postG, wood, tw, x, .6, z));
+      [[0, -30.6, 61.2, .1], [0, 30.6, 61.2, .1], [-30.6, 0, .1, 61.2], [30.6, 0, .1, 61.2]].forEach(([x, z, w, d]) => [.5, .95].forEach(y => add(new T.BoxGeometry(w, .1, d), railM, tw, x, y, z)));
+    } else {
+      const beacon = M(0x5ec8f2, { emissive: 0x5ec8f2, emissiveIntensity: 1 });
+      for (let i = -30; i <= 30; i += 10) [[i, -30.6], [i, 30.6], [-30.6, i], [30.6, i]].forEach(([x, z]) => { cyl(.06, .08, 1, steel, tw, x, .5, z, null, 8); add(new T.SphereGeometry(.14, 10, 8), beacon, tw, x, 1.05, z, false); });
+    }
     tractor = new T.Group(); tw.add(tractor);
-    const red = M(0xd8342a, { roughness: .32 }), redD = M(0xa8261e, { roughness: .4 }), yel = M(0xf2c230, { roughness: .4 }), dark = M(0x2b2723, { roughness: .7 });
-    rb(1.15, .8, 2.3, .26, red, tractor, 0, 1.45, 1);
-    rb(.9, .58, .06, .05, dark, tractor, 0, 1.42, 2.17);
-    [-.12, 0, .12].forEach(dy => rb(.82, .04, .07, .02, steel, tractor, 0, 1.42 + dy, 2.19));
-    [.42, -.42].forEach(x => add(rbox(.2, .14, .06, .05), lamp, tractor, x, 1.62, 2.16, false));
-    rb(1.5, .7, 1.7, .2, red, tractor, 0, 1.15, -.6);
-    [[.7, .08], [-.7, .08], [.7, -1.18], [-.7, -1.18]].forEach(([x, z]) => cyl(.05, .05, 1.4, dark, tractor, x, 2.2, z, null, 10));
-    add(rbox(1.34, 1.24, .04, .04), glass, tractor, 0, 2.2, .1, false);
-    add(rbox(1.34, 1.24, .04, .04), glass, tractor, 0, 2.2, -1.18, false);
-    [.7, -.7].forEach(x => add(rbox(.04, 1.24, 1.22, .04), glass, tractor, x, 2.2, -.55, false));
-    rb(1.66, .14, 1.6, .07, white, tractor, 0, 2.94, -.55);
-    rb(.5, .12, .46, .06, dark, tractor, 0, 1.78, -.75); rb(.5, .5, .1, .05, dark, tractor, 0, 2.02, -.98);
-    const sw = add(new T.TorusGeometry(.17, .025, 8, 24), dark, tractor, 0, 2.08, -.22); sw.rotation.x = -1;
-    cyl(.025, .025, .45, dark, tractor, 0, 1.92, -.12, null, 8).rotation.x = .55;
-    cyl(.065, .065, 1.15, chrome, tractor, .4, 2.15, 1.75, null, 14); cyl(.08, .07, .1, dark, tractor, .4, 2.75, 1.75, null, 14);
-    const fenderG = new T.CylinderGeometry(1.1, 1.1, .64, 28, 1, true, .15, Math.PI - .3); fenderG.rotateZ(Math.PI / 2);
-    const fenderM = new T.MeshStandardMaterial({ color: C(0xd8342a), roughness: .35, side: T.DoubleSide });
-    [1.05, -1.05].forEach(x => add(fenderG, fenderM, tractor, x, .95, -.6));
-    cyl(.07, .07, 1.5, dark, tractor, 0, .55, 1.7, 'x', 10);
-    const treadTex = canvasTex(256, 32, (x, w, h) => { x.fillStyle = '#262320'; x.fillRect(0, 0, w, h); x.fillStyle = '#3a3631'; for (let i = 0; i < w; i += 16) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i + 8, h / 2); x.lineTo(i, h); x.lineTo(i + 6, h); x.lineTo(i + 14, h / 2); x.lineTo(i + 6, 0); x.fill(); } }, 2, 1);
-    const treadM = new T.MeshStandardMaterial({ map: treadTex, roughness: .9 });
-    const wheel = (r, w, x, y, z, steer) => {
+    deck = new T.Group(); tractor.add(deck);
+    const wheel = (r, w, x, y, z, steer, tireM, rimM) => {
       const pv = new T.Group(); pv.position.set(x, y, z); tractor.add(pv);
       const wg = new T.Group(); pv.add(wg);
-      add(tireGeo(r, w), steer ? rubber : treadM, wg);
-      const rim = new T.CylinderGeometry(r * .62, r * .62, w * .86, 24); rim.rotateZ(Math.PI / 2); add(rim, yel, wg);
+      add(tireGeo(r, w), tireM, wg);
+      const rim = new T.CylinderGeometry(r * .62, r * .62, w * .86, 24); rim.rotateZ(Math.PI / 2); add(rim, rimM, wg);
       cyl(r * .2, r * .2, w + .04, steel, wg, 0, 0, 0, 'x', 14);
       for (let k = 0; k < 6; k++) { const a = k / 6 * Math.PI * 2; cyl(r * .05, r * .05, w + .06, chrome, wg, 0, Math.cos(a) * r * .38, Math.sin(a) * r * .38, 'x', 8); }
       wheels.push([wg, r]); if (steer) fpiv.push(pv);
     };
-    wheel(.95, .56, 1.05, .95, -.6); wheel(.95, .56, -1.05, .95, -.6); wheel(.55, .4, .85, .55, 1.7, true); wheel(.55, .4, -.85, .55, 1.7, true);
-    deck = new T.Group(); tractor.add(deck);
-    rb(3.2, .26, 1.25, .12, yel, deck, 0, 0, -2.45); rb(2.5, .12, .8, .06, M(0xd9a91a, { roughness: .4 }), deck, 0, .17, -2.45);
-    [.5, -.5].forEach(x => { const a = rb(.12, .12, 1.45, .05, dark, deck, x, .3, -1.75); a.rotation.x = -.18; });
-    [1.45, -1.45].forEach(x => cyl(.12, .12, .1, rubber, deck, x, -.08, -3.02, 'x', 14));
-    // gemaaid gras dat uit de zijkant van het maaidek waait
-    const clipG = new T.BoxGeometry(.07, .03, .12), clipM = [M(0x8cc85a, { roughness: .9 }), M(0x6fae45, { roughness: .9 })];
-    for (let i = 0; i < 60; i++) { const m = add(clipG, clipM[i % 2], tw, 0, -1, 0, false); m.visible = false; spray.push({ m, v: new T.Vector3(), life: 0 }); }
-    built = true;
+    P.anim = () => {};
+    if (id === 'farm') {
+      const red = M(0xd8342a, { roughness: .32 }), yel = M(0xf2c230, { roughness: .4 }), dark = M(0x2b2723, { roughness: .7 }), white = M(0xf4f1ea, { roughness: .6 });
+      rb(1.15, .8, 2.3, .26, red, tractor, 0, 1.45, 1);
+      rb(.9, .58, .06, .05, dark, tractor, 0, 1.42, 2.17);
+      [-.12, 0, .12].forEach(dy => rb(.82, .04, .07, .02, steel, tractor, 0, 1.42 + dy, 2.19));
+      [.42, -.42].forEach(x => add(rbox(.2, .14, .06, .05), lamp, tractor, x, 1.62, 2.16, false));
+      rb(1.5, .7, 1.7, .2, red, tractor, 0, 1.15, -.6);
+      [[.7, .08], [-.7, .08], [.7, -1.18], [-.7, -1.18]].forEach(([x, z]) => cyl(.05, .05, 1.4, dark, tractor, x, 2.2, z, null, 10));
+      add(rbox(1.34, 1.24, .04, .04), glass, tractor, 0, 2.2, .1, false);
+      add(rbox(1.34, 1.24, .04, .04), glass, tractor, 0, 2.2, -1.18, false);
+      [.7, -.7].forEach(x => add(rbox(.04, 1.24, 1.22, .04), glass, tractor, x, 2.2, -.55, false));
+      rb(1.66, .14, 1.6, .07, white, tractor, 0, 2.94, -.55);
+      rb(.5, .12, .46, .06, dark, tractor, 0, 1.78, -.75); rb(.5, .5, .1, .05, dark, tractor, 0, 2.02, -.98);
+      add(new T.TorusGeometry(.17, .025, 8, 24), dark, tractor, 0, 2.08, -.22).rotation.x = -1;
+      cyl(.065, .065, 1.15, chrome, tractor, .4, 2.15, 1.75, null, 14); cyl(.08, .07, .1, dark, tractor, .4, 2.75, 1.75, null, 14);
+      const fenderG = new T.CylinderGeometry(1.1, 1.1, .64, 28, 1, true, .15, Math.PI - .3); fenderG.rotateZ(Math.PI / 2);
+      const fenderM = new T.MeshStandardMaterial({ color: C(0xd8342a), roughness: .35, side: T.DoubleSide });
+      [1.05, -1.05].forEach(x => add(fenderG, fenderM, tractor, x, .95, -.6));
+      cyl(.07, .07, 1.5, dark, tractor, 0, .55, 1.7, 'x', 10);
+      const treadTex = canvasTex(256, 32, (x, w, h) => { x.fillStyle = '#262320'; x.fillRect(0, 0, w, h); x.fillStyle = '#3a3631'; for (let i = 0; i < w; i += 16) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i + 8, h / 2); x.lineTo(i, h); x.lineTo(i + 6, h); x.lineTo(i + 14, h / 2); x.lineTo(i + 6, 0); x.fill(); } }, 2, 1);
+      const treadM = new T.MeshStandardMaterial({ map: treadTex, roughness: .9 });
+      wheel(.95, .56, 1.05, .95, -.6, false, treadM, yel); wheel(.95, .56, -1.05, .95, -.6, false, treadM, yel); wheel(.55, .4, .85, .55, 1.7, true, rubber, yel); wheel(.55, .4, -.85, .55, 1.7, true, rubber, yel);
+      rb(3.2, .26, 1.25, .12, yel, deck, 0, 0, -2.45); rb(2.5, .12, .8, .06, M(0xd9a91a, { roughness: .4 }), deck, 0, .17, -2.45);
+      [.5, -.5].forEach(x => { rb(.12, .12, 1.45, .05, dark, deck, x, .3, -1.75).rotation.x = -.18; });
+      [1.45, -1.45].forEach(x => cyl(.12, .12, .1, rubber, deck, x, -.08, -3.02, 'x', 14));
+      P.anim = (dt, mowing) => { deck.position.y += ((mowing ? .42 : .95) - deck.position.y) * Math.min(1, 6 * dt); };
+    }
+    if (id === 'space') {
+      const wht = M(0xeef2f8, { roughness: .35 }), red = M(0xe24a3b, { roughness: .4 }), grey = M(0x9aa1ad, { roughness: .5, metalness: .3 });
+      rb(2, .34, 3.4, .12, wht, tractor, 0, .95, 0);
+      rb(1.7, .62, 1.1, .16, wht, tractor, 0, 1.45, -1); rb(1.72, .12, 1.12, .05, red, tractor, 0, 1.3, -1);
+      add(new T.SphereGeometry(.85, 28, 16, 0, Math.PI * 2, 0, Math.PI / 2), glass, tractor, 0, 1.1, .55, false);
+      rb(.55, .12, .5, .06, M(0x3a4152), tractor, 0, 1.25, .45); rb(.55, .5, .1, .05, M(0x3a4152), tractor, 0, 1.5, .2);
+      const panel = new T.MeshStandardMaterial({ roughness: .3, metalness: .4, map: canvasTex(128, 64, (x, w, h) => { x.fillStyle = '#1d3f8f'; x.fillRect(0, 0, w, h); x.strokeStyle = '#7fa8ff'; x.lineWidth = 2; for (let i = 0; i <= w; i += 16) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i, h); x.stroke(); } for (let j = 0; j <= h; j += 16) { x.beginPath(); x.moveTo(0, j); x.lineTo(w, j); x.stroke(); } }) });
+      rb(2.4, .05, 1.3, .02, panel, tractor, 0, 1.85, -1); cyl(.05, .05, .15, grey, tractor, 0, 1.78, -1, null, 8);
+      cyl(.04, .04, 1.1, grey, tractor, .7, 1.75, 1.2, null, 8); const cam1 = rb(.32, .2, .22, .06, wht, tractor, .7, 2.35, 1.2);
+      add(new T.CylinderGeometry(.06, .06, .05, 12).rotateX(Math.PI / 2), M(0x222222), cam1, 0, 0, .12, false);
+      const dish = new T.Group(); dish.position.set(-.65, 2.1, -1.2); tractor.add(dish);
+      cyl(.03, .03, .4, grey, dish, 0, -.2, 0, null, 8); add(new T.SphereGeometry(.45, 20, 8, 0, Math.PI * 2, 0, Math.PI / 2.4), new T.MeshStandardMaterial({ color: C(0xeef2f8), roughness: .4, side: T.DoubleSide }), dish, 0, .1, 0).rotation.x = Math.PI * .75;
+      [-1.25, 0, 1.25].forEach(z => [1.15, -1.15].forEach(x => { rb(.4, .1, .1, .03, grey, tractor, x * .7, .8, z); wheel(.45, .36, x, .45, z, z > 0, rubber, grey); }));
+      const lampsOn = [], coneM = new T.MeshBasicMaterial({ color: 0xfff3b0, transparent: true, opacity: .16, depthWrite: false, side: T.DoubleSide });
+      [.55, -.55].forEach(x => { add(rbox(.24, .14, .06, .05), lamp, tractor, x, 1.02, 1.72, false); const c = new T.Mesh(new T.ConeGeometry(1.1, 7, 20, 1, true), coneM); c.rotation.x = Math.PI / 2; c.position.set(x, 1, 5.2); c.visible = false; tractor.add(c); lampsOn.push(c); });
+      P.anim = (dt, lamps) => { lampsOn.forEach(c => c.visible = lamps); dish.rotation.y += dt * .8; cam1.rotation.y = Math.sin(performance.now() / 900) * .6; };
+    }
+    if (id === 'unicorn') {
+      // eenhoorn met vleugels: de poten lopen mee met de snelheid, met "vliegen!" stijgt hij op
+      const uni = new T.Group(); tractor.add(uni);
+      const white = M(0xffffff, { roughness: .5 }), gold = M(0xf2c94c, { roughness: .3, metalness: .45 }), pink = M(0xffd2e3, { roughness: .5 }), eye = M(0x2a1a3a, { roughness: .3 });
+      const body = new T.Group(); body.position.y = 1.45; uni.add(body);
+      ball(1, white, body, 0, 0, 0, .72, .68, 1.25);
+      const neck = add(new T.CylinderGeometry(.3, .42, 1.15, 18), white, body, 0, .62, .95); neck.rotation.x = .6;
+      const head = new T.Group(); head.position.set(0, 1.2, 1.38); body.add(head);
+      ball(.42, white, head, 0, 0, 0, 1, .95, 1.25); ball(.28, pink, head, 0, -.12, .45, 1.05, .9, 1);
+      [.24, -.24].forEach(x => { ball(.06, eye, head, x * 1.15, .1, .22); add(new T.ConeGeometry(.1, .3, 10), white, head, x * .8, .42, -.12).rotation.z = -x; });
+      const hornG = new T.ConeGeometry(.08, .75, 14); add(hornG, gold, head, 0, .56, .2).rotation.x = .4;
+      RB3.forEach((c, i) => ball(.17, M(c, { roughness: .4 }), body, 0, 1.38 - i * .17, 1.1 - i * .14));
+      RB3.forEach((c, i) => ball(.17 - i * .012, M(c, { roughness: .4 }), body, 0, -.05 - i * .14, -1.25 - i * .13));
+      const legs = [], hips = [[.36, .7, 0], [-.36, .7, Math.PI], [.36, -.7, Math.PI], [-.36, -.7, 0]];
+      hips.forEach(([x, z]) => { const pv = new T.Group(); pv.position.set(x, -.35, z); body.add(pv); add(new T.CylinderGeometry(.13, .1, 1, 12), white, pv, 0, -.5, 0); add(new T.CylinderGeometry(.12, .13, .14, 12), gold, pv, 0, -1.02, 0); legs.push(pv); });
+      const wingS = new T.Shape(); wingS.moveTo(0, 0); wingS.bezierCurveTo(.6, .4, 1.6, .5, 2.1, .2); wingS.bezierCurveTo(1.7, .05, 1.8, -.2, 1.5, -.25); wingS.bezierCurveTo(1.2, -.15, 1.1, -.4, .8, -.35); wingS.bezierCurveTo(.5, -.3, .2, -.3, 0, 0);
+      const wingG = new T.ShapeGeometry(wingS, 16); wingG.rotateX(-Math.PI / 2);
+      const wingM = new T.MeshStandardMaterial({ color: C(0xfdf6ff), roughness: .5, side: T.DoubleSide, emissive: C(0xf3e6ff), emissiveIntensity: .2 });
+      const wings = [1, -1].map(sx => { const pv = new T.Group(); pv.position.set(sx * .45, .45, .25); pv.scale.x = sx; body.add(pv); add(wingG, wingM, pv); return pv; });
+      let phase = 0, alt = 0;
+      P.anim = (dt, flying, v) => {
+        alt += ((flying ? 3.2 : 0) - alt) * Math.min(1, dt * 1.6); uni.position.y = alt;
+        const t = performance.now() / 1000, sp = Math.min(1, Math.abs(v) / 2.5);
+        if (alt < .3) {
+          const before = Math.floor(phase / Math.PI); phase += v * dt * 2.4;
+          if (Math.floor(phase / Math.PI) !== before && sp > .1 && open) tone(180 + Math.random() * 60, 0, .05, 'triangle', .06);   // hoefgetrappel
+          legs.forEach((l, i) => l.rotation.x = Math.sin(phase + hips[i][2]) * .6 * sp);
+          body.position.y = 1.45 + Math.abs(Math.sin(phase)) * .08 * sp;
+        } else { legs.forEach((l, i) => l.rotation.x += ((i < 2 ? -.9 : .9) - l.rotation.x) * Math.min(1, dt * 4)); body.position.y = 1.45 + Math.sin(t * 2) * .1; }
+        wings.forEach(w => w.rotation.z = flying ? .15 + Math.sin(t * 7) * .65 : .95);
+      };
+    }
+    // deeltjes: gras, maanstof of glitter
+    sprayM = P.spray.cols.map(c => M(c, { roughness: .8, emissive: P.spray.sparkle ? c : 0x000000, emissiveIntensity: P.spray.sparkle ? .5 : 0 }));
+    for (let i = 0; i < 60; i++) { const m = add(P.spray.geo, sprayM[i % sprayM.length], tw, 0, -1, 0, false); m.visible = false; spray.push({ m, v: new T.Vector3(), life: 0 }); }
+    builtFor = id; built = true;
   }
   const setGear = g => { tr.gear = g; $('#gear').textContent = g > 0 ? 'vooruit' : 'achteruit'; $('#gear').classList.toggle('on', g < 0); };
-  const setMow = m => { tr.mow = m; $('#mow').textContent = m ? 'maaier aan' : 'maaier uit'; $('#mow').classList.toggle('on', m); };
+  const setMow = m => { tr.mow = m; $('#mow').textContent = W3.toggle[m ? 1 : 0]; $('#mow').classList.toggle('on', m); };
   function resetField() {
-    fctx.fillStyle = '#4a8a2c'; fctx.fillRect(0, 0, 512, 512);
-    for (let i = 0; i < 4200; i++) { fctx.fillStyle = ['#3f7d24', '#56982f', '#467f27', '#5ea235'][i % 4]; fctx.fillRect(Math.random() * 512, Math.random() * 512, 2, 4); }
+    const F = W3.field;
+    fctx.fillStyle = F.base; fctx.fillRect(0, 0, 512, 512);
+    for (let i = 0; i < 4200; i++) { fctx.fillStyle = F.dots[i % 4]; fctx.fillRect(Math.random() * 512, Math.random() * 512, 2, 4); }
     ftex.needsUpdate = true; mown = new Uint8Array(900); mownN = 0;
     spray.forEach(c => { c.life = 0; c.m.visible = false; });
-    Object.assign(tr, { x: 0, z: -22, h: 0, v: 0, gas: 0, brake: 0 }); wAng = 0; setGear(1); setMow(false); deck.position.y = .95;
+    Object.assign(tr, { x: 0, z: -22, h: 0, v: 0, gas: 0, brake: 0 }); wAng = 0; setGear(1); setMow(false); deck.position.y = builtFor === 'farm' ? .95 : 0;
   }
   function tracFrame(dt, kx) {
     const gas = Math.max(tr.gas, keys.ArrowUp ? 1 : 0), brake = Math.max(tr.brake, keys.ArrowDown ? 1 : 0), ks = kx('ArrowRight', 'ArrowLeft');
@@ -1552,30 +1916,32 @@ const SIM = (() => {
     tr.x = clamp(tr.x + Math.sin(tr.h) * tr.v * dt, -44, 44); tr.z = clamp(tr.z + Math.cos(tr.h) * tr.v * dt, -44, 44);
     tractor.position.set(tr.x, 0, tr.z); tractor.rotation.y = tr.h; fpiv.forEach(pv => pv.rotation.y = steer);
     wheels.forEach(([m, r]) => m.rotation.x += tr.v / r * dt);
-    const mowing = tr.mow && st.engine;
-    deck.position.y += ((mowing ? .42 : .95) - deck.position.y) * Math.min(1, 6 * dt);
-    if (mowing && Math.abs(tr.v) > .15) {
-      // het gemaaide gras wordt op het veld geschilderd, met banen zoals op een echt gazon
-      const mx = tr.x - Math.sin(tr.h) * 2.400, mz = tr.z - Math.cos(tr.h) * 2.400, k = 512 / 60;
-      fctx.save(); fctx.translate((mx + 30) * k, (mz + 30) * k); fctx.rotate(-tr.h);
-      fctx.fillStyle = Math.cos(tr.h) > 0 ? '#9fd46a' : '#86c254'; fctx.fillRect(-1.600 * k, -.7 * k, 3.200 * k, 1.400 * k); fctx.restore(); ftex.needsUpdate = true;
+    const mowing = tr.mow && st.engine, F = W3.field;
+    W3.anim(dt, mowing, tr.v);
+    const painting = (F.when === 'move' ? st.engine : mowing) && Math.abs(tr.v) > .15;
+    if (painting) {
+      // het spoor wordt op het veld geschilderd: gemaaid gras, bandensporen in het maanstof of een regenboog
+      const mx = tr.x - Math.sin(tr.h) * F.back, mz = tr.z - Math.cos(tr.h) * F.back, k = 512 / 60;
+      F.dir = Math.cos(tr.h);
+      fctx.save(); fctx.translate((mx + 30) * k, (mz + 30) * k); fctx.rotate(-tr.h); F.paint(fctx, k); fctx.restore(); ftex.needsUpdate = true;
       for (const o of [-1.200, 0, 1.200]) {
         const gx = Math.floor((mx + Math.cos(tr.h) * o + 30) / 2), gz = Math.floor((mz - Math.sin(tr.h) * o + 30) / 2);
         if (gx >= 0 && gx < 30 && gz >= 0 && gz < 30 && !mown[gz * 30 + gx]) { mown[gz * 30 + gx] = 1; mownN++; }
       }
-      $('#simInfo').textContent = 'gras ' + Math.round(mownN / 9) + '%';
+      $('#simInfo').textContent = F.info + ' ' + Math.round(mownN / 9) + '%';
     }
-    const sv = new T.Vector3();
-    if (mowing && Math.abs(tr.v) > .3) for (let k = 0; k < 2; k++) {
+    const sv = new T.Vector3(), SPR = W3.spray;
+    if (painting && Math.abs(tr.v) > .3) for (let k = 0; k < 2; k++) {
       const c = spray.find(o => o.life <= 0); if (!c) break;
-      c.m.position.copy(tractor.localToWorld(sv.set(1.7, .55, -2.45 + (Math.random() - .5) * .8))); c.m.visible = true; c.life = .7;
-      c.v.set(Math.cos(tr.h) * 3.5 + (Math.random() - .5), 1.5 + Math.random() * 1.5, -Math.sin(tr.h) * 3.5 + (Math.random() - .5));
+      const sx = SPR.both && Math.random() < .5 ? -1 : 1;
+      c.m.position.copy(tractor.localToWorld(sv.set(SPR.at[0] * sx, SPR.at[1] + (builtFor === 'unicorn' ? tractor.children[1].position.y : 0), SPR.at[2] + (Math.random() - .5) * .8))); c.m.visible = true; c.life = SPR.sparkle ? 1.2 : .8;
+      c.v.set(Math.cos(tr.h) * SPR.side * sx + (Math.random() - .5), SPR.up[0] + Math.random() * SPR.up[1], -Math.sin(tr.h) * SPR.side * sx + (Math.random() - .5));
     }
     for (const c of spray) if (c.life > 0) {
-      c.life -= dt; c.v.y -= 9 * dt; c.m.position.addScaledVector(c.v, dt); c.m.rotation.x += 9 * dt; c.m.rotation.y += 7 * dt;
+      c.life -= dt; c.v.y -= SPR.g * dt; c.m.position.addScaledVector(c.v, dt); c.m.rotation.x += 9 * dt; c.m.rotation.y += 7 * dt;
       if (c.life <= 0 || c.m.position.y < .05) { c.life = 0; c.m.visible = false; }
     }
-    if (snd) { const t = ac.currentTime, f = 42 + 24 * Math.abs(tr.v) / 5 + gas * 8; snd.o1.frequency.setTargetAtTime(f, t, .2); snd.o2.frequency.setTargetAtTime(f * 2, t, .2); snd.hg.gain.setTargetAtTime(mowing ? .03 : 0, t, .1); }
+    if (snd) { const E = W3.engine, t = ac.currentTime, f = E.base + E.span * (Math.abs(tr.v) / 5 * .9 + gas * .3); snd.o1.frequency.setTargetAtTime(f, t, .2); snd.o2.frequency.setTargetAtTime(f * (E.t2 === 'sine' ? 1.5 : 2), t, .2); snd.hg.gain.setTargetAtTime(painting ? .03 : 0, t, .1); }
     camH += (tr.h - camH) * Math.min(1, dt * 2.500);
     cam.position.set(tr.x - Math.sin(camH) * 11, 6.500, tr.z - Math.cos(camH) * 11);
     cam.lookAt(tr.x + Math.sin(camH) * 4, 1, tr.z + Math.cos(camH) * 4);
@@ -1587,7 +1953,7 @@ const SIM = (() => {
   }
   function addPile(x, z, vol) {
     pileG = pileG || new T.LatheGeometry([[1, 0], [.94, .08], [.8, .28], [.58, .56], [.34, .82], [.13, .97], [0, 1]].map(([a, b]) => new T.Vector2(a, b)), 32);
-    const p = { x, z, vol, mesh: new T.Mesh(pileG, M(0xd8b077, { roughness: 1 })) };
+    const p = { x, z, vol, mesh: new T.Mesh(pileG, M(W3.pile, { roughness: 1 })) };
     p.mesh.castShadow = p.mesh.receiveShadow = true; ew.add(p.mesh); piles.push(p); setPile(p); return p;
   }
   function reset() {
@@ -1611,17 +1977,17 @@ const SIM = (() => {
     const a = audio();
     if (on) {
       if (!a || snd) return;
-      [0, .16, .32].forEach(t => tone(95, t, .12, 'square', .05));
+      const E = W3.engine; E.start();
       const o1 = a.createOscillator(), o2 = a.createOscillator(), lp = a.createBiquadFilter(), g = a.createGain(), g2 = a.createGain();
-      o1.type = 'sawtooth'; o2.type = 'square'; o1.frequency.value = 26; o2.frequency.value = 52; g2.gain.value = .35;
-      lp.type = 'lowpass'; lp.frequency.value = 280; g.gain.value = 0;
+      o1.type = E.t1; o2.type = E.t2; o1.frequency.value = E.f0; o2.frequency.value = E.f0 * 2; g2.gain.value = .35;
+      lp.type = 'lowpass'; lp.frequency.value = E.lp; g.gain.value = 0;
       o1.connect(lp); o2.connect(g2); g2.connect(lp); lp.connect(g); g.connect(a.destination);
       const nb = a.createBuffer(1, a.sampleRate, a.sampleRate), ch = nb.getChannelData(0); for (let i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1;
       const ns = a.createBufferSource(), bp = a.createBiquadFilter(), hg = a.createGain();
-      ns.buffer = nb; ns.loop = true; bp.type = 'bandpass'; bp.frequency.value = 1100; bp.Q.value = 2; hg.gain.value = 0;
+      ns.buffer = nb; ns.loop = true; bp.type = 'bandpass'; bp.frequency.value = W3.engine.noise; bp.Q.value = 2; hg.gain.value = 0;
       ns.connect(bp); bp.connect(hg); hg.connect(a.destination);
       const t = a.currentTime + .45; o1.start(); o2.start(); ns.start();
-      g.gain.setTargetAtTime(.1, t, .25); o1.frequency.setTargetAtTime(42, t, .3); o2.frequency.setTargetAtTime(84, t, .3);
+      g.gain.setTargetAtTime(E.vol, t, .25); o1.frequency.setTargetAtTime(E.base, t, .3); o2.frequency.setTargetAtTime(E.base * (E.t2 === 'sine' ? 1.5 : 2), t, .3);
       snd = { o1, o2, g, ns, hg };
     } else if (snd) {
       const s = snd; snd = null;
@@ -1665,7 +2031,7 @@ const SIM = (() => {
       if (st.load && st.a3 < .05) {
         st.load = false; fill.visible = false;
         for (let i = 0; i < 7; i++) {   // een schep zand valt als een regen van kluiten
-          const m = new T.Mesh(new T.SphereGeometry(i ? .16 + Math.random() * .14 : .4, 10, 8), M(0xb98f5a, { roughness: 1 })); m.castShadow = true;
+          const m = new T.Mesh(new T.SphereGeometry(i ? .16 + Math.random() * .14 : .4, 10, 8), M(W3.drop, { roughness: 1 })); m.castShadow = true;
           m.position.copy(tipPos); if (i) { m.position.x += (Math.random() - .5) * .7; m.position.z += (Math.random() - .5) * .7; m.position.y += Math.random() * .5; }
           ew.add(m); drops.push({ m, vy: -Math.random(), main: !i });
         }
@@ -1679,7 +2045,7 @@ const SIM = (() => {
         sfx.pop();
         if (inBed) {
           truck.n++; truck.fill.visible = true; truck.fill.scale.y = truck.n * 1.600; truck.fill.position.y = 1.180 + truck.n * .16; say(String(truck.n));
-          if (truck.n >= 5) { truck.state = 'weg'; setTimeout(() => say('De wagen is vol! Daar gaat hij.'), 700); }
+          if (truck.n >= 5) { truck.state = 'weg'; setTimeout(() => say(TH.say.full + ' Daar gaat hij.'), 700); }
         } else {
           const near = piles.find(q => Math.hypot(q.x - p.x, q.z - p.z) < q.r + .4);
           if (near) { near.vol += 1; setPile(near); } else addPile(p.x, p.z, 1);
@@ -1688,8 +2054,8 @@ const SIM = (() => {
     }
     if (truck.state === 'weg') { truck.position.z += 7 * dt; if (truck.position.z > 75) { truck.position.z = -70; truck.n = 0; truck.fill.visible = false; truck.state = 'terug'; } }
     else if (truck.state === 'terug') { truck.position.z = Math.min(6, truck.position.z + 9 * dt); if (truck.position.z >= 6) truck.state = ''; }
-    $('#simInfo').textContent = st.load ? 'bak vol' : truck.n ? `wagen ${truck.n} van 5` : '';
-    if (snd) { const t = ac.currentTime, f = 42 + 26 * Math.max(drive, armAct * .7); snd.o1.frequency.setTargetAtTime(f, t, .15); snd.o2.frequency.setTargetAtTime(f * 2, t, .15); snd.hg.gain.setTargetAtTime(armAct * .035, t, .08); }
+    $('#simInfo').textContent = st.load ? 'bak vol' : truck.n ? `${TH.cart} ${truck.n} van 5` : '';
+    if (snd) { const E = W3.engine, t = ac.currentTime, f = E.base + E.span * Math.max(drive, armAct * .7); snd.o1.frequency.setTargetAtTime(f, t, .15); snd.o2.frequency.setTargetAtTime(f * (W3.engine.t2 === 'sine' ? 1.5 : 2), t, .15); snd.hg.gain.setTargetAtTime(armAct * .035, t, .08); }
     camH += (st.h + st.swing * .6 - camH) * Math.min(1, dt * 2);
     cam.position.set(st.x - Math.sin(camH) * 9.500 - Math.cos(camH) * 5, 8.500, st.z - Math.cos(camH) * 9.500 + Math.sin(camH) * 5);
     cam.lookAt(st.x + Math.sin(camH) * 5, -1.500, st.z + Math.cos(camH) * 5);
@@ -1704,14 +2070,15 @@ const SIM = (() => {
   function resize() { if (!open) return; const w = window.innerWidth, h = window.innerHeight; R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
   function start(m) {
     if (!ok) return false;
-    try { if (!built) build(); } catch (e) { return false; }
+    try { build(); } catch (e) { console.error(e); return false; }
     mode = m === 'trac' ? 'trac' : 'exc'; ew.visible = mode === 'exc'; tw.visible = mode === 'trac';
     $('#ctlExc').hidden = mode !== 'exc'; $('#ctlTrac').hidden = mode !== 'trac';
     runId++; engineOff(); reset(); setEngine(false);
     timeLeft = S.playMin * 60; warned = S.playMin * 60 <= 30;
     $('#home').hidden = true; $('#game').hidden = true; $('#done').hidden = true; $('#settings').hidden = true; $('#sim').hidden = false;
     open = true; resize(); last = performance.now(); raf = requestAnimationFrame(frame);
-    say(mode === 'trac' ? 'Druk op start. Zet de maaier aan en geef gas.' : 'Druk op start. Dan gaat de motor aan.');
+    $('#brake').textContent = W3.pedals[0]; $('#gas').textContent = W3.pedals[1]; $('#ctlTrac .pad small').textContent = W3.pedals[2];
+    say(mode === 'trac' ? TH.say.simTrac : TH.say.simExc);
     return true;
   }
   function close(timeUp) {
@@ -1752,7 +2119,7 @@ const SIM = (() => {
     document.addEventListener('keydown', e => { if (!open) return; if (e.key === ' ') { e.preventDefault(); if (!e.repeat) setEngine(!st.engine); return; } if (mode === 'trac' && !e.repeat) { if (e.key === 'r' || e.key === 'R') setGear(-tr.gear); if (e.key === 'm' || e.key === 'M') setMow(!tr.mow); } keys[e.key.length === 1 ? e.key.toLowerCase() : e.key] = true; if (e.key.startsWith('Arrow')) e.preventDefault(); });
     document.addEventListener('keyup', e => { delete keys[e.key.length === 1 ? e.key.toLowerCase() : e.key]; });
   }
-  return { ok, start, get mode() { return mode; } };
+  return { ok, start, get mode() { return mode; }, get world() { return builtFor; } };
 })();
 function useTicket(mode) {
   if (S.tickets < 1) { say(`Nog ${S.goal - S.played} ${S.goal - S.played === 1 ? 'spel' : 'spellen'}. Dan mag je rijden.`); return; }
@@ -1770,24 +2137,26 @@ function renderHome() {
   $('#rewards').hidden = !(S.goal > 0 && SIM.ok);
   document.querySelectorAll('.reward').forEach(b => b.classList.toggle('locked', S.tickets < 1));
   document.querySelectorAll('.rewardTxt').forEach(t => t.textContent = S.tickets > 0 ? 'je mag rijden!' : `nog ${left} ${left === 1 ? 'spel' : 'spellen'}`);
-  const n = Math.min(STICKERS.length, Math.floor(S.stars / 5)), st = $('#stickers');
+  const n = Math.min(TH.stickers.length, Math.floor(S.stars / 5)), st = $('#stickers');
   st.innerHTML = '';
-  STICKERS.forEach((e, i) => { const d = document.createElement('div'); d.className = 'sticker' + (i < n ? '' : ' locked'); d.textContent = i < n ? e : '?'; st.appendChild(d); });
+  TH.stickers.forEach((e, i) => { const d = document.createElement('div'); d.className = 'sticker' + (i < n ? '' : ' locked'); d.textContent = i < n ? e : '?'; st.appendChild(d); });
   const have = S.stars % 5;
-  $('#next').innerHTML = n >= STICKERS.length ? 'Je boerderij is vol. Wat een werk!' : Array.from({ length: 5 }, (_, i) => `<span class="pip${i < have ? ' on' : ''}"></span>`).join('') + `<span>nog ${5 - have} ${5 - have === 1 ? 'ster' : 'sterren'}</span>`;
+  $('#next').innerHTML = n >= TH.stickers.length ? 'Alles is vol. Wat een werk!' : Array.from({ length: 5 }, (_, i) => `<span class="pip${i < have ? ' on' : ''}"></span>`).join('') + `<span>nog ${5 - have} ${5 - have === 1 ? 'ster' : 'sterren'}</span>`;
 }
 function buildCards() {
+  $('#cards').innerHTML = '';
+  const C = TH.cards;
   const defs = [
-    { id: 'dig', name: 'graaf', sub: 'maak het woord', vb: '-85 -215 300 225', draw: s => makeExcavator(s).set(0, 0, 165, -70) },
-    { id: 'drive', name: 'rij', sub: 'lees het woord', vb: '-95 -170 240 180', draw: s => makeTractor(s).place(0, 0) },
-    { id: 'write', name: 'schrijf', sub: 'rijd de letter', vb: '-45 15 150 100', draw: s => {
-      STROKES.a.forEach(d => el('path', { d, fill: 'none', stroke: '#e9c46a', 'stroke-width': 18, 'stroke-linecap': 'round' }, s));
-      el('path', { d: STROKES.a[0], fill: 'none', stroke: '#6b4a2e', 'stroke-width': 10, 'stroke-linecap': 'round' }, s);
-      const t = el('g', { transform: 'translate(46,101) scale(.2)' }, s); makeTractor(t).place(0, 0);
+    { id: 'dig', vb: '-85 -215 300 225', draw: s => makeExcavator(s).set(0, 0, 165, -70) },
+    { id: 'drive', vb: '-130 -190 280 200', draw: s => TH.driver(s).place(0, 0) },
+    { id: 'write', vb: '-45 15 150 100', draw: s => {
+      STROKES.a.forEach(d => el('path', { d, fill: 'none', stroke: TH.write.road === '#ffffff' ? '#ead9f7' : TH.write.road, 'stroke-width': 18, 'stroke-linecap': 'round' }, s));
+      el('path', { d: STROKES.a[0], fill: 'none', stroke: TH.write.ink, 'stroke-width': 10, 'stroke-linecap': 'round' }, s);
+      const t = el('g', { transform: 'translate(46,101) scale(.2)' }, s); TH.driver(t).place(0, 0);
     } },
-    { id: 'load', name: 'tel', sub: 'schep zand in de wagen', vb: '560 350 360 160', draw: s => { const t = makeTruck(s); for (let i = 0; i < 7; i++) el('rect', { x: 598 + (i % 5) * 39, y: 444 - 26 * (Math.floor(i / 5) + 1) + 1, width: 36, height: 24, rx: 11, fill: '#e9c46a', stroke: '#8a6200', 'stroke-width': 2.500 }, t.blobs); } },
-    { id: 'field', name: 'wei', sub: 'hoeveel dieren?', vb: '0 0 300 150', draw: s => { el('rect', { x: 0, y: 95, width: 300, height: 55, rx: 12, fill: '#7fbf4f' }, s); ['🐄', '🐖', '🐑'].forEach((e, i) => el('text', { x: 60 + i * 90, y: 78, 'font-size': 70, 'text-anchor': 'middle', 'dominant-baseline': 'central', class: 'emo' }, s).textContent = e); } }
-  ];
+    { id: 'load', vb: '560 320 360 190', draw: s => { const t = makeTruck(s); for (let i = 0; i < 7; i++) el('rect', { x: 598 + (i % 5) * 39, y: 444 - 26 * (Math.floor(i / 5) + 1) + 1, width: 36, height: 24, rx: 11, fill: TH.blob[i % TH.blob.length], stroke: TH.blobLine, 'stroke-width': 2.500 }, t.blobs); } },
+    { id: 'field', vb: '0 0 300 150', draw: s => { el('rect', { x: 0, y: 95, width: 300, height: 55, rx: 12, fill: TH.fieldGround }, s); TH.fieldCard.forEach((e, i) => el('text', { x: 60 + i * 90, y: 78, 'font-size': 70, 'text-anchor': 'middle', 'dominant-baseline': 'central', class: 'emo' }, s).textContent = e); } }
+  ].map(d => Object.assign(d, { name: C[d.id][0], sub: C[d.id][1] }));
   defs.forEach(d => {
     const b = document.createElement('button'); b.className = 'card';
     const s = el('svg', { viewBox: d.vb, 'aria-hidden': 'true' }); d.draw(s);
@@ -1806,17 +2175,16 @@ $('#goE').addEventListener('click', () => useTicket('exc'));
 $('#goT').addEventListener('click', () => useTicket('trac'));
 $('#freePlay').addEventListener('click', () => { if (!SIM.start('exc')) $('#freePlay').textContent = 'lukt niet op dit apparaat'; });
 $('#freePlayT').addEventListener('click', () => { if (!SIM.start('trac')) $('#freePlayT').textContent = 'lukt niet op dit apparaat'; });
-makeTractor($('#rewardPicT')).place(0, 0);
+function hornKind() { const w = SIM.world || 'farm'; return w === 'farm' ? (SIM.mode === 'exc' ? 'exc' : 'trac') : w; }
 function hornBtn(b) {
-  const low = () => !$('#sim').hidden && SIM.mode === 'exc';
+  const low = hornKind;
   b.addEventListener('pointerdown', e => { e.preventDefault(); try { b.setPointerCapture(e.pointerId); } catch (er) {} b.classList.add('down'); hornOn(low()); });
   ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(t => b.addEventListener(t, () => { b.classList.remove('down'); hornOff(); }));
   b.addEventListener('click', e => { if (e.detail === 0) { hornOn(low()); setTimeout(hornOff, 350); } });
 }
 hornBtn($('#hornS'));
-document.addEventListener('keydown', e => { if ((e.key === 'b' || e.key === 'B') && !e.repeat && !$('#sim').hidden) hornOn(!$('#sim').hidden && SIM.mode === 'exc'); });
+document.addEventListener('keydown', e => { if ((e.key === 'b' || e.key === 'B') && !e.repeat && !$('#sim').hidden) hornOn(hornKind()); });
 document.addEventListener('keyup', e => { if (e.key === 'b' || e.key === 'B') hornOff(); });
-makeExcavator($('#rewardPic')).set(0, 0, 165, -70);
 /* oudercode: een keersom die voor het kind nog te moeilijk is */
 let gateAns = 0, gateIn = '';
 function gateNew() { const a = 6 + rnd(4), b = 6 + rnd(4); gateAns = a * b; gateIn = ''; $('#gateQ').textContent = `${a} × ${b} =`; $('#gateIn').textContent = '?'; }
@@ -1878,7 +2246,32 @@ if (!['auto', 'on', 'off'].includes(S.ghostMode)) S.ghostMode = 'auto';
 if (!S.readMax) S.readMax = Math.min(LEVELS.length, S.readLevel + 1);
 LEVELS.forEach((v, i) => { $('#setWord').add(new Option(v.n, i + 1)); $('#setMax').add(new Option(v.n, i + 1)); });
 MATH.forEach((v, i) => $('#setMath').add(new Option(`${i + 1} · ${v}`, i + 1)));
-buildCards(); renderHome();
+/* wereldkiezer: elk kind kiest zelf; sterren en niveaus blijven gewoon staan */
+function drawWorld(svg, key) {
+  const t = THEMES[key], keep = TH; TH = t;
+  el('rect', { x: -200, y: -260, width: 520, height: 300, fill: t.pickBg }, svg);
+  if (key === 'space') stars(svg, 22, 200);
+  if (key === 'unicorn') { const r = el('g', { transform: 'translate(0,-250)' }, svg); rainbowArc(r, 120, 200, 70); }
+  el('rect', { x: -200, y: 0, width: 520, height: 40, fill: t.pickGround }, svg);
+  t.driver(svg).place(0, 0); TH = keep;
+}
+function openWorlds(first) {
+  const box = $('#worlds'); box.innerHTML = '';
+  Object.keys(THEMES).forEach(key => {
+    const b = document.createElement('button'); b.className = 'world' + (S.world === key ? ' on' : '');
+    const v = el('svg', { viewBox: '-140 -200 300 230', 'aria-hidden': 'true', preserveAspectRatio: 'xMidYMid slice' }); drawWorld(v, key);
+    const n = document.createElement('b'); n.textContent = THEMES[key].name;
+    b.append(v, n);
+    b.addEventListener('click', () => { S.world = key; save(); applyTheme(); buildCards(); renderHome(); $('#worldPick').hidden = true; say(THEMES[key].name + '!'); });
+    box.appendChild(b);
+  });
+  SOON.forEach(w => { const b = document.createElement('div'); b.className = 'world soon'; b.innerHTML = `<div class="soon-pic">${w.e}</div><b>${w.name}</b><small>komt nog</small>`; box.appendChild(b); });
+  $('#worldPick').hidden = false;
+  say(first ? 'Hoi! Kies je wereld.' : 'Kies je wereld.');
+}
+$('#openWorld').addEventListener('click', () => openWorlds(false));
+applyTheme(); buildCards(); renderHome();
+if (!S.world) openWorlds(true);
 })();
 </script>
 
